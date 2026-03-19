@@ -1,0 +1,324 @@
+/* Natural Dye Palette
+   --madder:  #b8402a  · Rubia tinctorum · red · work metadata
+   --weld:    #c8952a  · Reseda luteola  · yellow · writing metadata
+   --woad:    #3a5c7a  · Isatis tinctoria · blue · contact / nav
+   --walnut:  #5a3e28  · Juglans regia   · brown · accent
+   --fleece:  #f7f4ef  · undyed wool     · background
+   --shadow:  #3a3228  · dark warm near-black · body text
+*/
+
+:root {
+    --madder:  #b8402a;
+    --weld:    #c8952a;
+    --woad:    #3a5c7a;
+    --walnut:  #5a3e28;
+    --fleece:  #f7f4ef;
+    --shadow:  #3a3228;
+  
+    --border:        #e2ddd6;
+    --muted:         #9a8f84;
+    --nav-link:      var(--woad);
+    --section-label: #a89b8e;
+  
+    /* Fibonacci spacing scale — a nod to natural fiber ratios */
+    --space-xs: 0.618rem;
+    --space-sm: 1rem;
+    --space-md: 1.618rem;
+    --space-lg: 2.618rem;
+    --space-xl: 4.236rem;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--shadow);
+    background: var(--fleece);
+  }
+  
+  /* --- LAYOUT --- */
+  
+  .layout {
+    display: flex;
+    min-height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  /* --- NAV --- */
+  
+  nav {
+    width: 160px;
+    flex-shrink: 0;
+    padding: 3.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  
+  nav a {
+    font-size: 0.78rem;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: var(--woad);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  nav a:hover {
+    color: var(--shadow);
+  }
+  
+  /* --- MAIN --- */
+  
+  main {
+    flex: 1;
+    padding: 3.5rem 2rem 3.5rem 3rem;
+    max-width: 680px;
+    border-left: 1px solid var(--border);
+  }
+  
+  /* --- HEADER --- */
+  
+  .hero-block {
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 3rem;
+    color: var(--shadow);
+  }
+  
+  .name {
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    font-size: 1.6rem;
+    color: var(--shadow);
+  }
+  
+  .spindle {
+    color: var(--shadow);
+  }
+  
+  /* sometimes you know exactly what you're making.
+     sometimes you follow the material. */
+  .mirrored-d {
+    display: inline-block;
+    transform: scaleX(-1);
+  }
+  
+  .spindle {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    margin-left: 0.2rem;
+    color: var(--shadow);
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(720deg); }
+  }
+  
+  .spindle svg {
+    animation: spin 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: center;
+    display: block;
+  }
+  
+  /* --- SECTIONS --- */
+  
+  section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  section:last-of-type {
+    border-bottom: none;
+  }
+  
+  h2 {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--section-label);
+    margin-bottom: 1.2rem;
+  }
+  
+  /* --- WORK ITEMS (simple list) --- */
+  
+  .work-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  
+  .work-item:last-child {
+    border-bottom: none;
+  }
+  
+  .work-title {
+    font-weight: 400;
+    color: var(--shadow);
+  }
+  
+  .work-company {
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--madder);
+  }
+  
+  /* --- WORK LIST (card layout) --- */
+  
+  .work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-top: 0.5rem;
+  }
+  
+  .work-entry {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  
+  .work-thumb {
+    flex-shrink: 0;
+    width: 180px;
+    aspect-ratio: 16 / 9;
+    background: #e8e2d9;
+    border-radius: 2px;
+  }
+
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .work-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.15rem;
+  }
+  
+  .work-meta {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--madder);
+    line-height: 1.4;
+  }
+  
+  .work-co {
+    font-weight: 300;
+    color: var(--woad);
+  }
+  
+  .work-blurb {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--walnut);
+    max-width: 340px;
+  }
+  
+  /* --- WRITING --- */
+  
+  .writing-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+    text-decoration: none;
+    color: var(--shadow);
+  }
+  
+  .writing-item:last-child {
+    border-bottom: none;
+  }
+  
+  .writing-item:hover .writing-title {
+    text-decoration: underline;
+  }
+  
+  .writing-year {
+    font-weight: 300;
+    font-size: 0.78rem;
+    color: var(--weld);
+  }
+  
+  /* --- CONTACT --- */
+  
+  #contact a {
+    font-size: 0.88rem;
+    color: var(--woad);
+    text-decoration: none;
+  }
+  
+  #contact a:hover {
+    text-decoration: underline;
+  }
+  
+  /* --- FOOTER --- */
+  
+  footer {
+    padding: 2.5rem 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  
+  /* --- DARK MODE --- */
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fleece:        #1c1916;
+      --shadow:        #ede8e0;
+      --border:        #302b26;
+      --muted:         #6a5e54;
+      --section-label: #5a5048;
+      --madder:        #c8513c;
+      --weld:          #c89830;
+      --woad:          #5a82a8;
+      --walnut:        #8a6848;
+    }
+  
+    .name,
+    .spindle,
+    .hero-block,
+    .work-meta,
+    .work-title,
+    .writing-item {
+      color: var(--shadow);
+    }
+  
+    .work-blurb {
+      color: #9a8e82;
+    }
+  
+    .work-thumb {
+      background: #2a2520;
+    }
+  }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>glad beltran +</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero-logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.4rem;
+      padding: 2rem 0 1.5rem;
+    }
+
+    .logo-name {
+      font-size: clamp(3.2rem, 8vw, 6.4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--shadow);
+      white-space: nowrap;
+    }
+
+    .logo-name .mirrored-d {
+      display: inline-block;
+      transform: scaleX(-1);
+    }
+
+    .spindle-hero {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .spindle-hero svg {
+      width: clamp(52px, 9vw, 96px);
+      height: clamp(52px, 9vw, 96px);
+      color: var(--shadow);
+      display: block;
+    }
+
+    @keyframes spinDecel {
+      0%   { transform: rotate(0deg); }
+      5%   { transform: rotate(205deg); }
+      12%  { transform: rotate(459deg); }
+      22%  { transform: rotate(757deg); }
+      35%  { transform: rotate(1045deg); }
+      50%  { transform: rotate(1260deg); }
+      65%  { transform: rotate(1378deg); }
+      78%  { transform: rotate(1425deg); }
+      88%  { transform: rotate(1438deg); }
+      95%  { transform: rotate(1440deg); }
+      100% { transform: rotate(1440deg); }
+    }
+
+    .spindle-hero svg {
+      animation: spinDecel 5.5s linear forwards;
+      transform-origin: center;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 520px;
+      color: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    .hero-block { display: none; }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav>
+      <a href="#work">work</a>
+      <a href="#ai-practice">Ai practice</a>
+      <a href="#writing">writing</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <main>
+      <header>
+
+        <div class="hero-logo">
+          <div class="logo-name">gla<span class="mirrored-d">b</span> beltran</div>
+          <div class="spindle-hero">
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;">
+              <!-- arms: short stubs, pushed back -->
+              <path d="M34.3367 120.981L42.7621 120.997" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="13.8177"/>
+              <path d="M195.503 120L202.714 120"         fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="13.7856"/>
+              <path d="M119.472 33.7768L119.472 44.3721" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="13.5393"/>
+              <path d="M120 197.113L120 199.945"         fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="13.5125"/>
+              <!-- cop circle -->
+              <path d="M50 120C50 101.267 60.7326 85.921 73.0776 73.7122C87.5346 59.4149 100.073 50 120 50C137.798 50 148.599 59.7544 160.95 70.6955C175.428 83.5199 190 99.1382 190 120C190 138.162 177.326 150.662 165.983 163.103C153.181 177.144 140.498 190 120 190C101.624 190 85.9901 176.073 73.5012 164.49C59.7162 151.706 50 140.283 50 120Z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+              <!-- center diamond -->
+              <path d="M120 98L142 120L120 142L98 120L120 98Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+              <!-- center dot -->
+              <path d="M116.5 120C116.5 118.067 118.067 116.5 120 116.5C121.933 116.5 123.5 118.067 123.5 120C123.5 121.933 121.933 123.5 120 123.5C118.067 123.5 116.5 121.933 116.5 120Z" fill="currentColor"/>
+              <!-- yarn winding lines inside cop -->
+              <path d="M82.7578 130.5C82.7578 113.554 109.072 86.2745 125.25 83.5781" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M131.484 88.1719C144.355 88.1719 153.633 112.119 153.633 122.133" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M157.078 125.906C157.078 135.949 139.251 152.749 129.023 154.453" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M124.43 154.781C102.251 157.95 99.9922 149.049 88.1719 134.273" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M93.0938 159.047C86.5684 153.609 80.7057 145.508 78 137.391" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M71.2734 122.789C71.2734 101.528 92.3635 74.8951 114.094 71.2734" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M129.516 70.2891C149.694 70.2891 163.107 92.3125 168.398 108.188" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M175.289 119.18C175.289 141.291 146.854 165.892 125.906 169.383" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M112.781 171.844C86.1695 174.801 67.8918 145.711 64.5469 122.297" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M60.1172 111.797C60.1172 88.872 87.9153 72.1022 103.102 59.9531" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M112.453 58.9688C123.854 58.9688 137.216 59.1399 147.562 64.7109C164.872 74.0313 177.018 99.8563 180.047 118.031" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M181.359 133.125C181.359 142.725 173.573 148.679 167.578 155.273C149.557 175.097 132.175 185.822 105.398 181.359" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+              <path d="M67.8281 147.234C60.6221 141.058 54.8672 125.513 54.8672 115.898" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+
+        <p class="hero-tagline">
+          product designer, UX strategist, AI explorer, spinner, and speculative thinker based in Miami, FL.
+          Sometimes she knows exactly what she's making.
+          Sometimes she follows the material and sees where it leads.
+        </p>
+
+      </header>
+
+      <section id="work">
+        <h2>Work</h2>
+
+        <div class="work-list">
+
+          <div class="work-entry">
+            <div class="work-thumb"><img src="form-send-preview.png"></div>
+            <div class="work-info">
+              <div class="work-meta">Annual contracting redesign <span class="work-co">· Frontline Education</span></div>
+              <p class="work-blurb">Redesigned the end-to-end contracting flow for K–12 HR administrators, reducing errors and time-to-completion across a high-stakes annual process.</p>
+            </div>
+          </div>
+
+          <div class="work-entry">
+            <div class="work-thumb"></div>
+            <div class="work-info">
+              <div class="work-meta">Job search notification system <span class="work-co">· Frontline Education</span></div>
+              <p class="work-blurb">Designed a notification system helping job seekers in education track application status and stay informed without logging in repeatedly.</p>
+            </div>
+          </div>
+
+          <div class="work-entry">
+            <div class="work-thumb"></div>
+            <div class="work-info">
+              <div class="work-meta">Form builder redesign <span class="work-co">· Frontline Education</span></div>
+              <p class="work-blurb">Overhauled a legacy form builder used by district administrators to create and manage applicant-facing forms across hiring workflows.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <section id="ai-practice">
+        <h2>Ai Practice</h2>
+      </section>
+
+      <section id="writing">
+        <h2>Writing</h2>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <a href="/cdn-cgi/l/email-protection#f28b9d8780b2979f939b9edc919d9f"><span class="__cf_email__" data-cfemail="fd8492888fbd98909c9491d39e9290">[email&#160;protected]</span> →</a>
+      </section>
+
+      <footer>
+        <p>© 2026 glad beltran · coded with twist</p>
+      </footer>
+    </main>
