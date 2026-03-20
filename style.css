@@ -158,88 +158,76 @@
     margin-bottom: 1.2rem;
   }
   
-  /* --- WORK ITEMS (simple list) --- */
-  
-  .work-item {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
-  }
-  
-  .work-item:last-child {
-    border-bottom: none;
-  }
-  
-  .work-title {
-    font-weight: 400;
-    color: var(--shadow);
-  }
-  
-  .work-company {
-    font-weight: 300;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    color: var(--madder);
-  }
-  
-  /* --- WORK LIST (card layout) --- */
+  /* --- WORK LIST (typographic layout) --- */
   
   .work-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
   }
   
   .work-entry {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+  display: grid;
+  grid-template-columns: 2.8rem 1fr;
+  gap: 0 1.2rem;
+  align-items: start;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
   }
   
-  .work-thumb {
-    flex-shrink: 0;
-    width: 180px;
-    aspect-ratio: 16 / 9;
-    background: #e8e2d9;
-    border-radius: 2px;
-  }
-
-  .work-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
+  .work-entry:first-child {
+  border-top: 1px solid var(--border);
   }
   
-  .work-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 0.15rem;
+  .work-entry:hover {
+  opacity: 0.7;
   }
   
-  .work-meta {
-    font-size: 0.88rem;
-    font-weight: 400;
-    color: var(--madder);
-    line-height: 1.4;
+  .work-entry:hover .work-title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  }
+  
+  .work-index {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--section-label);
+  padding-top: 0.3rem;
+  font-variant-numeric: tabular-nums;
+  }
+  
+  .work-problem {
+  font-size: 1.35rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--shadow);
+  margin-bottom: 0.75rem;
+  max-width: 480px;
+  }
+  
+  .work-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  }
+  
+  .work-title {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--shadow);
   }
   
   .work-co {
-    font-weight: 300;
-    color: var(--woad);
-  }
-  
-  .work-blurb {
-    font-size: 0.85rem;
-    font-weight: 300;
-    line-height: 1.65;
-    color: var(--walnut);
-    max-width: 340px;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--woad);
+  letter-spacing: 0.03em;
   }
   
   /* --- WRITING --- */
@@ -308,17 +296,13 @@
     .name,
     .spindle,
     .hero-block,
-    .work-meta,
+    .work-problem,
     .work-title,
     .writing-item {
       color: var(--shadow);
     }
   
-    .work-blurb {
-      color: #9a8e82;
-    }
-  
-    .work-thumb {
-      background: #2a2520;
+    .work-index {
+      color: var(--muted);
     }
   }
