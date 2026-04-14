@@ -8,11 +8,11 @@
 */
 
 :root {
-    --madder:  #b8402a;
-    --weld:    #c8952a;
+    --madder:  #a33820;
+    --weld:    #b07d1a;
     --woad:    #3a5c7a;
     --walnut:  #5a3e28;
-    --fleece:  #fafafa;
+    --fleece:  #ffffff;
     --shadow:  #3a3228;
   
     --border:        #e2ddd6;
@@ -41,6 +41,16 @@
     line-height: 1.65;
     color: var(--shadow);
     background: var(--fleece);
+  }
+  
+  a {
+    color: var(--woad);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--madder);
   }
   
   /* --- LAYOUT --- */
@@ -278,44 +288,6 @@
     color: var(--muted);
   }
   
-  /* --- MOBILE --- */
-
-  @media (max-width: 768px) {
-    .layout {
-      flex-direction: column;
-    }
-
-    nav {
-      width: 100%;
-      height: auto;
-      position: static;
-      flex-direction: row;
-      flex-wrap: wrap;
-      padding: 1.25rem 1.5rem;
-      gap: 0.25rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav a {
-      font-size: 0.82rem;
-    }
-
-    main {
-      padding: 2rem 1.5rem;
-      border-left: none;
-      max-width: 100%;
-    }
-
-    .work-problem {
-      font-size: 1.15rem;
-      max-width: 100%;
-    }
-
-    .hero-logo {
-      gap: 0.4rem;
-    }
-  }
-
   /* --- DARK MODE --- */
   
   @media (prefers-color-scheme: dark) {
@@ -344,3 +316,325 @@
       color: var(--muted);
     }
   }
+/* --- CASE STUDY PAGES --- */
+
+.case-study-page .layout {
+  max-width: 1100px;
+}
+
+.case-study-page main {
+  max-width: none;
+}
+
+/* --- CASE HEADER --- */
+
+.case-header {
+  padding: var(--space-lg) 0 var(--space-sm);
+}
+
+.case-header h1 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--shadow);
+  margin-bottom: var(--space-sm);
+}
+
+.case-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--section-label);
+}
+
+.case-meta-sep {
+  color: var(--border);
+}
+
+/* --- CASE OVERVIEW --- */
+
+.case-overview {
+  padding: var(--space-lg) 0 var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+/* Two-column: wide narrative left, narrower details right */
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.65fr;
+  gap: 3.5rem;
+  margin-bottom: var(--space-xl);
+  align-items: start;
+}
+
+.overview-narrative h3,
+.overview-details h3 {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--woad);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.overview-narrative h3:first-child,
+.overview-details h3:first-child {
+  margin-top: 0;
+}
+
+.overview-narrative p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--shadow);
+  margin-bottom: var(--space-sm);
+}
+
+/* What I Did — readable list */
+
+.overview-did {
+  list-style: none;
+  padding: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--shadow);
+}
+
+.overview-did li {
+  margin-bottom: 0.6rem;
+}
+
+/* Methods — compact tag-like list */
+
+.overview-methods {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.overview-methods li {
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* --- BEFORE / AFTER COMPARISON --- */
+
+.overview-comparison {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.comparison-grid figure {
+  margin: 0;
+}
+
+.comparison-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.comparison-tag {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.before-tag {
+  background: var(--border);
+  color: var(--muted);
+}
+
+.after-tag {
+  background: var(--woad);
+  color: var(--fleece);
+}
+
+.comparison-grid img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.comparison-grid a {
+  display: block;
+  cursor: zoom-in;
+  text-decoration: none;
+}
+
+.comparison-grid a:hover img {
+  opacity: 0.85;
+}
+
+/* --- SCROLL INDICATOR --- */
+
+.scroll-indicator {
+  text-align: center;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid var(--border);
+}
+
+.scroll-indicator a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+
+.scroll-indicator a:hover {
+  color: var(--shadow);
+}
+
+/* --- LIGHTBOX --- */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(28, 25, 22, 0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+  border: 1px solid var(--border);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  color: var(--fleece);
+  text-decoration: none;
+  line-height: 1;
+  font-weight: 300;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover {
+  opacity: 0.7;
+}
+
+/* --- FULL CASE NARRATIVE --- */
+
+.case-narrative {
+  max-width: 640px;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border);
+}
+
+.case-narrative h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--shadow);
+  margin-bottom: var(--space-md);
+  margin-top: var(--space-xl);
+  text-transform: none;
+}
+
+.case-narrative h2:first-child {
+  margin-top: 0;
+}
+
+.case-narrative p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+  color: var(--shadow);
+}
+
+.case-narrative strong {
+  font-weight: 400;
+  color: var(--shadow);
+}
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 860px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .case-overview,
+  .case-narrative {
+    padding: var(--space-lg) 0;
+  }
+
+  .lightbox-close {
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .lightbox {
+    background: rgba(10, 8, 6, 0.96);
+  }
+
+  .lightbox-close {
+    color: var(--shadow);
+  }
+
+  .before-tag {
+    background: var(--border);
+    color: var(--muted);
+  }
+
+  .after-tag {
+    background: var(--woad);
+    color: var(--fleece);
+  }
+}
