@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>From Friction to Focus · glad beltran</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ─── CASE STUDY SCOPED STYLES ─────────────────────────────────────
+       All selectors prefixed with .case-study-page to avoid collisions
+       with style.css. Color variables inherited from :root.
+    ──────────────────────────────────────────────────────────────────── */
+
+    /* Header */
+    .case-study-page .case-header {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .case-study-page .case-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--shadow);
+      margin-bottom: 1rem;
+    }
+
+    .case-study-page .case-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 480px;
+    }
+
+    .case-study-page .case-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .case-study-page .case-meta-sep {
+      color: var(--border);
+    }
+
+    /* Overview section */
+    .case-study-page .case-overview {
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Before / After comparison */
+    .case-study-page .overview-comparison {
+      margin-bottom: 2.5rem;
+    }
+
+    .case-study-page .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .case-study-page .comparison-grid figure {
+      margin: 0;
+    }
+
+    .case-study-page .comparison-label {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .case-study-page .comparison-tag {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .case-study-page .before-tag {
+      background: color-mix(in srgb, var(--madder) 12%, transparent);
+      color: var(--madder);
+    }
+
+    .case-study-page .after-tag {
+      background: color-mix(in srgb, var(--woad) 12%, transparent);
+      color: var(--woad);
+    }
+
+    .case-study-page .comparison-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .case-study-page .comparison-grid a {
+      display: block;
+    }
+
+    /* Overview two-column grid */
+    .case-study-page .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      padding: 2rem 0 2.5rem;
+    }
+
+    .case-study-page .overview-narrative h3,
+    .case-study-page .overview-details h3 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .case-study-page .overview-narrative h3:first-child,
+    .case-study-page .overview-details h3:first-child {
+      margin-top: 0;
+    }
+
+    .case-study-page .overview-narrative p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-study-page .overview-did,
+    .case-study-page .overview-methods {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .case-study-page .overview-did li,
+    .case-study-page .overview-methods li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--shadow);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .overview-did li:last-child,
+    .case-study-page .overview-methods li:last-child {
+      border-bottom: none;
+    }
+
+    /* Scroll indicator */
+    .case-study-page .scroll-indicator {
+      padding: 1.2rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .scroll-indicator a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--woad);
+      text-decoration: none;
+    }
+
+    .case-study-page .scroll-indicator a:hover {
+      text-decoration: underline;
+    }
+
+    /* Full case narrative */
+    .case-study-page .case-narrative {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    /* Override h2 within case narrative to be section headers, not labels */
+    .case-study-page .case-narrative h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-top: 2.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .case-study-page .case-narrative h2:first-child {
+      margin-top: 0;
+    }
+
+    .case-study-page .case-narrative p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--shadow);
+      margin-bottom: 1rem;
+      max-width: 580px;
+    }
+
+    .case-study-page .case-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
+    .case-study-page .case-narrative strong {
+      font-weight: 400;
+      color: var(--shadow);
+    }
+
+    /* NPS callout block */
+    .case-study-page .nps-callout {
+      border-left: 2px solid var(--madder);
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      background: color-mix(in srgb, var(--madder) 5%, transparent);
+      max-width: 580px;
+    }
+
+    .case-study-page .nps-callout p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--shadow);
+    }
+
+    .case-study-page .nps-callout p + p {
+      margin-top: 0.4rem;
+    }
+
+    /* Pull quote — animated entrance from left */
+    .case-study-page .pull-quote {
+      border-left: 2px solid var(--woad);
+      padding: 0.8rem 1.2rem;
+      margin: 1.8rem 0;
+      max-width: 540px;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .case-study-page .pull-quote.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .case-study-page .pull-quote p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--shadow);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .case-study-page .pull-quote cite {
+      display: block;
+      font-size: 0.72rem;
+      font-style: normal;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Case study images */
+    .case-study-page .case-image {
+      margin: 2rem 0;
+      max-width: 620px;
+    }
+
+    .case-study-page .case-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .case-study-page .case-image figcaption {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+
+    /* Key Takeaways closing section */
+    .case-study-page .case-takeaways {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      max-width: 580px;
+    }
+
+    .case-study-page .case-takeaways h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+    }
+
+    .case-study-page .takeaway-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case-study-page .takeaway-list li {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--shadow);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .takeaway-list li:last-child {
+      border-bottom: none;
+    }
+
+    .case-study-page .takeaway-list strong {
+      font-weight: 400;
+      color: var(--shadow);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Lightbox (CSS-only) */
+    .case-study-page .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 22, 0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .case-study-page .lightbox:target {
+      display: flex;
+    }
+
+    .case-study-page .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    .case-study-page .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--fleece);
+      font-size: 1.5rem;
+      text-decoration: none;
+      line-height: 1;
+      opacity: 0.7;
+    }
+
+    .case-study-page .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .case-study-page .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+
+      .case-study-page .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .case-study-page .case-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      .case-study-page .before-tag {
+        background: color-mix(in srgb, var(--madder) 18%, transparent);
+      }
+      .case-study-page .after-tag {
+        background: color-mix(in srgb, var(--woad) 18%, transparent);
+      }
+      .case-study-page .nps-callout {
+        background: color-mix(in srgb, var(--madder) 8%, transparent);
+      }
+    }
+  </style>
+</head>
+<body class="case-study-page">
+  <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
+  <div class="layout">
+    <nav>
+      <a href="index.html#work">← Work</a>
+      <a href="#overview">Overview</a>
+      <a href="#full-case">Full case</a>
+    </nav>
+
+    <main>
+
+      <header class="case-header">
+        <h1>From Friction to Focus</h1>
+        <p class="case-subtitle">Turning a dashboard teachers dreaded into one that felt like a relief.</p>
+        <div class="case-meta-bar">
+          <span class="case-meta-item">Frontline Education</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">Senior UX Designer</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">Dashboard Redesign</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">K–12 Ed-Tech</span>
+        </div>
+      </header>
+
+      <!-- ── OVERVIEW ─────────────────────────────────────────────── -->
+      <section id="overview" class="case-overview">
+
+        <div class="overview-comparison">
+          <div class="comparison-grid">
+            <figure>
+              <figcaption class="comparison-label">
+                <span class="comparison-tag before-tag">Before</span>
+                My Growth Journey — organized around a reflective metaphor nobody used
+              </figcaption>
+              <a href="#lightbox-before">
+                <img src="mygrowthjourney-before.png" alt="My Growth Journey dashboard showing the Where I've Been / Where I Am Now / Where I'm Going metaphor with scattered actions and a How I Get There sidebar">
+              </a>
+            </figure>
+            <figure>
+              <figcaption class="comparison-label">
+                <span class="comparison-tag after-tag">After</span>
+                Home — a view organized around what needs attention, right now
+              </figcaption>
+              <a href="#lightbox-after">
+                <img src="home-after.png" alt="Home dashboard with a clear To Do panel, Current Activities, My Requests, and Meetings organized by urgency">
+              </a>
+            </figure>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+
+          <div class="overview-narrative">
+            <h3>The Brief</h3>
+            <p>My Growth Journey (MGJ) was a legacy redesign that was not making users happier. It was supposed to be a new dashboard experience that helped staff "focus on their growth and not on keeping track of it."</p>
+            <p>Even after MGJ was released, Professional Learning Management had the lowest NPS score of all of Frontline Education's products included in the surveys.</p>
+            <p>Based on existing research and analytics available to me, I proposed a new design direction that delivered on the original promise.</p>
+
+            <h3>Outcome</h3>
+            <p>My new design direction produced unanimous positive responses across 6 participants. The final designs were in active development at the time of my departure from Frontline.</p>
+            <p>I also made new contributions to our design system which were approved as reusable React components, making my designs available for use across all of Frontline's products.</p>
+          </div>
+
+          <div class="overview-details">
+            <h3>What I Did</h3>
+            <ul class="overview-did">
+              <li>In roadmap planning, identified the MGJ landing experience as the highest-impact opportunity and made the case to cross-functional leadership</li>
+              <li>Translated existing ODI research into a new design direction</li>
+              <li>Led the redesign from wireframes through high-fidelity specs</li>
+              <li>Planned and facilitated client validation sessions</li>
+              <li>Contributed new reusable components to the design system</li>
+            </ul>
+
+            <h3>Methods</h3>
+            <ul class="overview-methods">
+              <li>Opportunity scoring / prioritization</li>
+              <li>Research synthesis</li>
+              <li>Low-fidelity wireframes</li>
+              <li>High-fidelity mockups</li>
+              <li>Client validation interviews</li>
+              <li>Design system contribution</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+      <div class="scroll-indicator">
+        <a href="#full-case">Read the full case study ↓</a>
+      </div>
+
+      <!-- ── FULL CASE ──────────────────────────────────────────────── -->
+      <section id="full-case" class="case-narrative">
+
+        <h2>The Problem</h2>
+        <p>Our PLM product was so hard to use that teachers dreaded logging in to complete their professional development. In one case, it literally cost someone a raise.</p>
+        <p>Users just wanted to get in, see what needed attention, and get out. But the existing experience scattered critical actions, progress indicators, and approvals across a layout that didn't match their mental model. They had no idea where to look to get the information they cared about.</p>
+
+        <h2>Identifying the Opportunity</h2>
+        <p>I proposed this initiative during a cross-functional roadmap planning meeting while we reviewed recent NPS scores. I noted that users repeatedly flagged navigation as a pain point.</p>
+        <p>I recommended the landing experience as the place where we could make the biggest impact with the least development effort.</p>
+        <p>We had also recently completed Outcome Driven Innovation research where we had the most up-to-date feedback on the current experience for teachers and staff trying to complete professional learning on our platform.</p>
+
+        <h2>Gathering Insights</h2>
+
+        <p><strong>Outcome Driven Innovation interviews.</strong> The previous version of the dashboard had been envisioned and designed based on institutional knowledge from internal stakeholders in Support and Implementation. To reset our understanding, we conducted ODI interviews to get to the reality of how our end users managed their professional development today, whether that included Frontline's tools or not.</p>
+
+        <div class="pull-quote">
+          <p>"I probably put in easy 90 hours of PD this year. You know how many I logged? Zero."</p>
+          <cite>High School Teacher · Interview participant</cite>
+        </div>
+
+        <p><strong>Logging professional development was so painful, it was costing teachers money.</strong> One participant had completed roughly 90 hours of professional development and logged none of it, and the consequence was a missed pay raise. They stopped believing the effort to document it was proportional to the benefit.</p>
+
+        <p><strong>My Growth Journey did not match the mental model of our users.</strong> My Growth Journey organized itself around a reflective metaphor — "Where I've Been / Where I Am Now / Where I'm Going" — that didn't match how anyone actually used the system. The mental model was task management, not a literal growth journey. The mismatch meant the most prominent element on the page was the least useful.</p>
+
+        <p><strong>"Waiting on someone else" is an important state to represent.</strong> Another anxiety we heard a lot was, "I don't know if I need to do something or if an administrator does." One teacher described spending months re-clicking through completed items because she couldn't tell if she needed to take further action to clear them off her list. Another had a weekly check-in ritual. One admin described individually emailing teachers because she couldn't see completion status without her own tracker.</p>
+
+        <p><strong>NPS scores.</strong> Professional Growth had an NPS of −12.7 — the lowest of all 7 products included in our surveys. Ease of use was the #1 reason for detractor scores, with 34 mentions — more than features, integration, or customer service.</p>
+
+        <div class="nps-callout">
+          <p>Professional Growth NPS: −12.7 — lowest of all 7 products surveyed.</p>
+          <p>Ease of use was the #1 detractor driver with 34 mentions — more than features, integration, or customer service.</p>
+        </div>
+
+        <p><strong>Page analytics.</strong> Our page analytics showed that users skipped the MGJ dashboard entirely and went straight to the Learning Plan page — a legacy page that was dated but at least more straightforward than the "journey." It confirmed that the existing experience was not successful in changing users' behavior.</p>
+
+        <h2>Design Process</h2>
+
+        <p><strong>Information architecture audit.</strong> Before diving into design, I mapped the existing architecture and compared it against what participants had told us in interviews: what they came to do, how often, and what they found valuable. The gap was immediate.</p>
+
+        <p>The content users prioritized most was scattered across three branches. An entire branch dedicated to content discovery occupied equal navigational weight despite research showing no participant used the dashboard to find new PD. That finding, more than anything else, shaped the restructuring that followed.</p>
+
+        <figure class="case-image">
+          <img src="ia-mgj-before.png" alt="IA diagram of My Growth Journey showing four branches: Where I've Been (Completed), Where I Am Now (In Progress, My Requests, My Employee Evals, My Log Entries), Where I'm Going (Upcoming PD, Goals), and How I Get There (Recommended, Shared With Me, New Learning Opps., Product News)">
+          <figcaption>Before: The four-branch journey metaphor mapped to system structure, not user intent. "How I Get There" assumed users found professional development through the platform — the ODI research showed all five participants found PD entirely through external channels.</figcaption>
+        </figure>
+
+        <figure class="case-image">
+          <img src="ia-home-after.png" alt="IA diagram of Home showing three branches: Current Activities and Evals (To Do, Current / Upcoming Activities, My Requests, Meetings, Current Evals), Planning (dashed, indicating future scope), and Completed Activities and Evals (Completed Activities, Completed Evals)">
+          <figcaption>After: Three branches organized around the user's actual relationship to their work — what's active now, what's completed, and (in future scope) what's being planned. The dashed Planning branch signals intentional future investment.</figcaption>
+        </figure>
+
+        <p><strong>Low-fidelity wireframes.</strong> I moved on to low-fidelity wireframes to focus on the new information hierarchy without worrying about interface styling. I restructured the new landing experience around user intent rather than the growth journey metaphor, organizing content by urgency: what's happening now at the top, in-progress work in the middle, secondary content accessible but visually deprioritized.</p>
+
+        <figure class="case-image">
+          <img src="low-fidelity-wireframes.png" alt="Low-fidelity wireframe showing the Home layout with a To Do panel on the left, My Requests on the right, Current Activities below, and Product News in the lower right. Sticky notes ask whether the To Do list can auto-refresh as items are completed.">
+          <figcaption>Early wireframes exploring the tiled layout. The To Do panel anchors the top left — the first thing a user needs to see. A sticky note captures an open question about auto-refresh behavior as tasks are completed.</figcaption>
+        </figure>
+
+        <p><strong>Concept validation.</strong> I facilitated interviews with six clients across three districts to validate the design direction. Participants immediately understood the to-do panel without explanation and responded to action-specific CTAs as a direct solution to a problem they'd been living with.</p>
+
+        <div class="pull-quote">
+          <p>"The box tells you exactly what I need to do. I don't have to look for it."</p>
+          <cite>First-Grade Teacher · Interview participant</cite>
+        </div>
+
+        <p>A district PD director described the to-do section as "phenomenal" and said it would help staff "not need to dig too deep." A digital learning specialist called the current experience "information overload" and the redesign "really focused" — unprompted. Sessions also surfaced useful refinements: separating upcoming from active items in Current Activities and surfacing activity-related meetings. Both ideas made it to the final designs.</p>
+
+        <p><strong>Refining the experience in high fidelity.</strong> The key design challenge was prioritizing urgent content without hiding secondary information. I proposed a visual treatment using background color to create hierarchy within the tiled layout. Primary tiles — To Do and Current Activities — sat on white card backgrounds. Secondary tiles — My Requests, Meetings, What's New — used the page's gray background, appearing "set back" from the primary content. The effect created a clear scannable hierarchy without fragmenting the layout.</p>
+
+        <figure class="case-image">
+          <img src="home-after.png" alt="Home dashboard showing the final high-fidelity design with To Do and Current Activities on white card backgrounds, and My Requests and Meetings visually receded on the page background">
+          <figcaption>Final high-fidelity design. White card backgrounds on To Do and Current Activities pull urgent content forward. Secondary tiles sit directly on the page surface — same typography, same placement, no card.</figcaption>
+        </figure>
+
+        <p><strong>Design system contribution.</strong> I worked with the design system lead to review my proposals. He steered me toward existing components where they solved the problem, keeping the system lean — but agreed that the "set back" tile treatment and several new patterns I proposed were valuable additions. These were approved as reusable React components available to other product teams across the platform.</p>
+
+        <h2>Outcome</h2>
+        <p>With unanimous positive responses from participants during concept validation, the team felt confident moving forward with the high-fidelity designs. The final designs were in active development at the time of my departure from Frontline.</p>
+        <p>I also made new contributions to our design system which were approved as reusable React components, making my designs available for use across all of Frontline's products.</p>
+
+      </section>
+
+      <!-- ── KEY TAKEAWAYS ─────────────────────────────────────────── -->
+      <div class="case-takeaways">
+        <h2>Key Takeaways</h2>
+        <ul class="takeaway-list">
+          <li>
+            <strong>Reducing branches is a structural argument, not just cleanup.</strong>
+            Consolidating from four top-level branches to three reflected how users actually think about their work — current, past, and future — rather than the reflective growth narrative the original architecture imposed on them.
+          </li>
+          <li>
+            <strong>Removing a broken feature is a stronger move than redesigning it.</strong>
+            The discovery cluster in "How I Get There" failed because it overpromised on features it wasn't delivering. Rather than patching it, I created architectural space for a rebuilt discovery experience that could actually deliver on its promise.
+          </li>
+          <li>
+            <strong>Language changes at the IA level, not just the UI level.</strong>
+            Renaming "My Employee Evals" to "Current Evals" removed possessive, role-specific framing in favor of task-state language — the same principle driving call-to-action and status label decisions throughout the redesign.
+          </li>
+        </ul>
+      </div>
+
+      <footer>
+        <p>© 2026 glad beltran · coded with twist</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ── LIGHTBOXES (CSS-only, :target) ─────────────────────────── -->
+  <div id="lightbox-before" class="lightbox">
+    <a href="#overview" class="lightbox-close">×</a>
+    <img src="mygrowthjourney-before.png" alt="My Growth Journey dashboard — before">
+  </div>
+
+  <div id="lightbox-after" class="lightbox">
+    <a href="#overview" class="lightbox-close">×</a>
+    <img src="home-after.png" alt="Home dashboard — after">
+  </div>
+
+  <!-- ── PULL QUOTE ENTRANCE ANIMATION ────────────────────────────── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quotes = document.querySelectorAll('.pull-quote');
+
+      if (!('IntersectionObserver' in window)) {
+        quotes.forEach(q => q.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      // Small delay ensures the browser has painted the initial opacity:0 state
+      // before we start observing — prevents instant trigger on page load
+      setTimeout(() => {
+        quotes.forEach(q => observer.observe(q));
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>

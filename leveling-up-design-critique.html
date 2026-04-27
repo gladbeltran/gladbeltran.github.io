@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Leveling Up Design Critique · glad beltran</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ─── WRITING PAGE SCOPED STYLES ────────────────────────────────────
+       Lighter than case study pages — single column, essay flow.
+    ──────────────────────────────────────────────────────────────────── */
+
+    .writing-page .writing-header {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      max-width: 600px;
+    }
+
+    .writing-page .writing-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--shadow);
+      margin-bottom: 0.5rem;
+    }
+
+    .writing-page .writing-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 480px;
+    }
+
+    .writing-page .writing-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .writing-page .writing-meta-sep {
+      color: var(--border);
+    }
+
+    /* Essay body */
+    .writing-page .essay {
+      max-width: 600px;
+      padding: 2.5rem 0 0;
+    }
+
+    .writing-page .essay h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-top: 2.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .writing-page .essay h2:first-child {
+      margin-top: 0;
+    }
+
+    .writing-page .essay p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--shadow);
+      margin-bottom: 1.1rem;
+    }
+
+    .writing-page .essay p:last-child {
+      margin-bottom: 0;
+    }
+
+    .writing-page .essay strong {
+      font-weight: 400;
+      color: var(--shadow);
+    }
+
+    /* Pull quote */
+    .writing-page .pull-quote {
+      border-left: 2px solid var(--woad);
+      padding: 0.8rem 1.2rem;
+      margin: 1.8rem 0;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .writing-page .pull-quote.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .writing-page .pull-quote p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--shadow);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .writing-page .pull-quote cite {
+      display: block;
+      font-size: 0.72rem;
+      font-style: normal;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Outcome list */
+    .writing-page .outcome-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 1.1rem;
+    }
+
+    .writing-page .outcome-list li {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--shadow);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .writing-page .outcome-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .writing-page .writing-header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body class="writing-page">
+  <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
+  <div class="layout">
+    <nav>
+      <a href="index.html#writing">← Writing</a>
+    </nav>
+
+    <main>
+
+      <header class="writing-header">
+        <h1>Leveling Up Design Critique</h1>
+        <p class="writing-subtitle">How I applied design thinking to redesign how a design team gives feedback.</p>
+        <div class="writing-meta">
+          <span>glad beltran</span>
+          <span class="writing-meta-sep">·</span>
+          <span>2024</span>
+          <span class="writing-meta-sep">·</span>
+          <span>Frontline Education</span>
+        </div>
+      </header>
+
+      <article class="essay">
+
+        <p>As Frontline Education's design team grew to 12 designers, our existing critique rituals struggled to scale. Most designers were embedded as the sole designer on individual product teams, often working in unfamiliar domains from one another. As a result, critique sessions required heavy context-setting, participation was uneven, and feedback quality varied — directly impacting our ability to validate design decisions and maintain quality standards across products.</p>
+
+        <p>I partnered with a UX Researcher who joined the team around the same time I did to rethink how critique could better support collaboration, learning, and design quality as the team scaled. As newer hires, we were encouraged by our manager to bring a fresh perspective to a long-standing team ritual.</p>
+
+        <h2>The Problem</h2>
+
+        <p>The existing critique format wasn't consistently serving designers or improving design outcomes. Presenters hesitated to share early work, leading to late-stage feedback when changes were costly. Critics lacked sufficient domain context to give useful, actionable feedback. The large group size limited participation depth and individual contribution. Sessions often drifted into problem-solving or unfocused discussion rather than structured critique.</p>
+
+        <p>These dynamics made critique feel high-stakes with unpredictable outcomes. They prevented critique from serving its core purpose: improving design quality through collaborative review.</p>
+
+        <h2>Applying Design Thinking to Team Process</h2>
+
+        <p>I approached this challenge using the same user-centered methodology I apply to product design.</p>
+
+        <p><strong>Empathize.</strong> I surveyed all 12 designers to understand critique pain points, fears, and needs. I conducted follow-up conversations to dig deeper into specific challenges around context-setting, psychological safety, and feedback quality.</p>
+
+        <p><strong>Define.</strong> The core problem wasn't the format itself, but creating conditions for useful feedback when context was limited and stakes felt high. Critique needed to scale alongside team growth while supporting designers working in isolated domains.</p>
+
+        <p><strong>Ideate.</strong> I researched critique best practices from design leaders and organizations and drew from prior experiences on different design teams. I explored multiple formats including smaller breakout groups, asynchronous critique, and structured facilitation models.</p>
+
+        <p><strong>Prototype.</strong> I designed a new critique structure with defined roles, ground rules, prep templates, and smaller group sizes. I piloted the approach by facilitating one group while my research partner facilitated the other in parallel — which let us test consistency, compare notes, share learnings, and support each other through challenges.</p>
+
+        <p><strong>Test.</strong> After 12 weeks, we conducted a follow-up survey and iterated on prep templates, facilitation techniques, and ground rules based on what was working and what needed refinement.</p>
+
+        <h2>Key Design Decisions</h2>
+
+        <p><strong>Smaller groups, parallel sessions.</strong> Splitting the 12-person team into two groups of 6 increased individual participation, reduced context-switching fatigue, and created space for deeper discussion. Critics could engage more meaningfully when they weren't competing for airtime with 10 other people.</p>
+
+        <p><strong>Defined roles and responsibilities.</strong> Establishing clear roles — facilitator, presenter, critics — with explicit responsibilities reduced ambiguity about what was expected and helped less experienced designers participate more confidently. Facilitators actively managed time, kept discussion focused, and intervened when feedback drifted off-topic.</p>
+
+        <p><strong>Structured prep template.</strong> A lightweight template asked presenters to frame the problem, goals, constraints, and specific questions for critics. This shifted cognitive load from the critique session itself to async preparation, allowing presenters to be more intentional about what feedback they needed and giving critics essential context upfront.</p>
+
+        <p><strong>Ground rules for constructive feedback.</strong> Codifying shared expectations — feedback should be objective, user-focused, specific, and aligned to the presenter's stated goals — gave both presenters and critics a shared vocabulary. It reduced anxiety around receiving critique by making expectations explicit.</p>
+
+        <p><strong>Support for earlier sharing.</strong> Explicitly encouraging informal, early-stage critiques outside the formal session structure normalized sharing unpolished work and reduced the pressure for "ta-da" presentations that were too far along to meaningfully change.</p>
+
+        <h2>Outcomes</h2>
+
+        <ul class="outcome-list">
+          <li>Over half of the design team reported improved feedback quality in the post-implementation survey</li>
+          <li>A marked increase in early-stage work sharing during critique sessions over six months</li>
+          <li>Increased participation across experience levels, with junior designers contributing more actively</li>
+          <li>Clearer takeaways and next steps after each session, improving follow-through on feedback</li>
+          <li>Dramatic reduction in cancellations and overall more engagement during critiques</li>
+        </ul>
+
+        <p>Qualitatively, designers reported feeling more comfortable sharing work earlier in the design process and more confident both giving and receiving feedback across unfamiliar domains.</p>
+
+        <h2>Tradeoffs</h2>
+
+        <p>Not every improvement was immediate or universal. Designers varied in how consistently they used the prep template, especially under time pressure — we optimized for flexibility over strict enforcement to avoid turning critique into overhead. Context still mattered: even with stronger framing, some domain-heavy work required deeper background than critique time allowed. And the quality of critique remained highly dependent on active and engaged facilitators, which required rotating the facilitation role to avoid burnout.</p>
+
+        <p>Shifting critique habits — especially around sharing earlier work and structuring feedback around goals rather than preferences — required repetition and reinforcement beyond a single rollout. We maintained momentum through consistent facilitation, celebrating examples of effective critique, and favoring natural conversations over textbook perfection.</p>
+
+        <h2>Why This Matters</h2>
+
+        <p>This work improved design quality not by adding process, but by designing better collaboration systems. It helped the team scale critique alongside team growth without losing effectiveness, support designers working in siloed or specialized domains, and make critique a reliable tool for decision-making rather than a box-checking exercise.</p>
+
+        <p>For me, as the team's newest designer, I saw an opportunity to revitalize Frontline's design critique practice by introducing principles I'd learned at Center Centre and during my residency at Abstract. My goal was to make critique feel less like a test and more like design hygiene — a routine practice that improves your work and feels good to do.</p>
+
+      </article>
+
+      <footer>
+        <p>© 2026 glad beltran · coded with twist</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ── PULL QUOTE ENTRANCE ANIMATION ────────────────────────────── -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const quotes = document.querySelectorAll('.pull-quote');
+
+      if (!('IntersectionObserver' in window)) {
+        quotes.forEach(q => q.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      setTimeout(() => {
+        quotes.forEach(q => observer.observe(q));
+      }, 100);
+    });
+  </script>
+
+</body>
+</html>

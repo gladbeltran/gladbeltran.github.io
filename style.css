@@ -38,9 +38,9 @@
     --shadow:  #3a3228;
   
     --border:        #e2ddd6;
-    --muted:         #9a8f84;
+    --muted:         #6b5f58;
     --nav-link:      var(--woad);
-    --section-label: #a89b8e;
+    --section-label: #7a6e67;
   
     /* Fibonacci spacing scale — a nod to natural fiber ratios */
     --space-xs: 0.618rem;
@@ -174,7 +174,7 @@
   
   section {
     padding: 2.5rem 0;
-    border-bottom: 1px solid var(--border);
+   
   }
   
   section:last-of-type {
@@ -182,7 +182,7 @@
   }
   
   h2 {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -343,8 +343,8 @@
       --fleece:        #1c1916;
       --shadow:        #ede8e0;
       --border:        #302b26;
-      --muted:         #6a5e54;
-      --section-label: #5a5048;
+      --muted:         #8a7e78;
+      --section-label: #7a6e67;
       --madder:        #c8513c;
       --weld:          #c89830;
       --woad:          #5a82a8;
