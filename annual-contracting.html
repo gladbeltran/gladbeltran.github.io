@@ -244,6 +244,75 @@
       margin-bottom: 0.2rem;
     }
 
+    /* Case study images */
+    .case-study-page .case-image {
+      margin: 2rem 0;
+      max-width: 620px;
+    }
+
+    .case-study-page .case-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .case-study-page .case-image figcaption {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+
+    /* Lightbox */
+    .case-study-page .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 22, 0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .case-study-page .lightbox.is-open {
+      display: flex;
+    }
+
+    .case-study-page img[data-lightbox] {
+      cursor: zoom-in;
+    }
+
+    .case-study-page .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    .case-study-page .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--fleece);
+      font-size: 1.5rem;
+      text-decoration: none;
+      line-height: 1;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .case-study-page .lightbox-close:hover {
+      opacity: 1;
+    }
+
     @media (max-width: 768px) {
       .case-study-page .overview-grid {
         grid-template-columns: 1fr;
@@ -362,11 +431,21 @@
 
         <p>Two problems made it unworkable. First, the third-party rich text editor the form builder relied on couldn't be reliably customized without significant engineering investment and ongoing maintenance risk. Second, early wireframes showed the experience was genuinely fragile: it placed a high cognitive burden on administrators to format complex assignment data correctly, in a context where getting it wrong had real consequences.</p>
 
+        <figure class="case-image">
+          <img data-lightbox src="images/early-wireframes.png" alt="Early wireframes exploring inline assignment data via placeholder tokens and table configuration through a modal in the rich text editor">
+          <figcaption>Early exploration using the existing rich text editor — inserting assignment data via placeholder tokens and configuring tables through a modal. The flexibility came at the cost of structure, placing the burden of accuracy on the administrator.</figcaption>
+        </figure>
+
         <p>I presented these findings to the product team and made the case for a different direction. The pivot wasn't a compromise — a more opinionated approach would actually serve administrators better under pressure than a flexible one that required them to get the structure right themselves.</p>
 
         <p><strong>Modeling multiple assignments.</strong> I reframed the problem: how might we support multiple assignments within a single contract while preserving clarity, usability, and technical feasibility?</p>
 
         <p>The answer was a structured table layout built on existing Form Builder patterns. Rather than asking administrators to construct assignment data through free-form formatting, the interface represented Primary, Secondary, and Supplemental assignments clearly and consistently: scannable at a glance, accurate by design.</p>
+
+        <figure class="case-image">
+          <img data-lightbox src="images/multiple-assignments.png" alt="Structured table layout showing Primary, Secondary, and Supplemental assignment types side by side with consistent columns">
+          <figcaption>The structured table layout representing Secondary Assignments and Supplementals side by side — consistent columns, scannable at a glance, and accurate by construction rather than by effort.</figcaption>
+        </figure>
 
         <p>We validated this approach through usability testing with eight district administrators representing a range of contract complexity. The structured format was understood in under 30 seconds. The free-form approach had taken two minutes or more. The difference wasn't minor: it was the difference between a tool administrators would trust under deadline pressure and one they'd avoid.</p>
 
@@ -375,6 +454,11 @@
         <p><strong>Reducing risk at distribution: Contract Groups.</strong> With the assignment model established, the next problem came into focus. Even if contracts were accurately structured, the distribution step still lacked the clarity administrators needed to act confidently. Whether assignments should be issued as one consolidated contract or as separate contracts is a consequential decision, and it was happening at the exact moment of highest risk, with the least support.</p>
 
         <p>I designed the Contract Groups distribution option to surface that decision explicitly at the point of sending. The interface breaks the decision into two clear layers: who is receiving the contract, and how assignments should be issued. Radio controls and defaults guide administrators toward common patterns while preserving precise control where regulations require it. A visual preview lets administrators validate the resulting contract structure before committing to an action that might affect hundreds of employees at once.</p>
+
+        <figure class="case-image">
+          <img data-lightbox src="images/form-send-preview.png" alt="Contract Groups distribution interface showing radio controls for each assignment type and a live document preview of the resulting contract structure">
+          <figcaption>The Contract Groups distribution interface — radio controls for each assignment type and a live document preview showing the resulting contract structure before sending.</figcaption>
+        </figure>
 
         <p>The design borrowed from the mental model already established during contract creation: the same Primary, Secondary, and Supplemental assignment types that structured the contract template also structured the distribution decision. Consistency between the two moments reduced cognitive load and made the higher-stakes step feel continuous with the work that came before it.</p>
 
@@ -423,28 +507,64 @@
     </main>
   </div>
 
-  <!-- ── PULL QUOTE ENTRANCE ANIMATION ────────────────────────────── -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Pull quote entrance animation
       const quotes = document.querySelectorAll('.pull-quote');
-
       if (!('IntersectionObserver' in window)) {
         quotes.forEach(q => q.classList.add('is-visible'));
-        return;
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
       }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      // Lightbox
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox';
 
-      setTimeout(() => {
-        quotes.forEach(q => observer.observe(q));
-      }, 100);
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'lightbox-close';
+      closeBtn.textContent = '×';
+      closeBtn.setAttribute('aria-label', 'Close');
+
+      const lightboxImg = document.createElement('img');
+
+      overlay.appendChild(closeBtn);
+      overlay.appendChild(lightboxImg);
+      document.body.appendChild(overlay);
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('img[data-lightbox]').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
     });
   </script>
 
