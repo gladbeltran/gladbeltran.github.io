@@ -360,8 +360,12 @@
       padding: 2rem;
     }
 
-    .case-study-page .lightbox:target {
+    .case-study-page .lightbox.is-open {
       display: flex;
+    }
+
+    .case-study-page img[data-lightbox] {
+      cursor: zoom-in;
     }
 
     .case-study-page .lightbox img {
@@ -380,6 +384,10 @@
       text-decoration: none;
       line-height: 1;
       opacity: 0.7;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
     }
 
     .case-study-page .lightbox-close:hover {
@@ -452,8 +460,8 @@
                 <span class="comparison-tag before-tag">Before</span>
                 My Growth Journey — organized around a metaphor nobody used
               </figcaption>
-              <a href="#lightbox-before">
-                <img src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard showing the Where I've Been / Where I Am Now / Where I'm Going metaphor with scattered actions and a How I Get There sidebar">
+              <a>
+                <img data-lightbox src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard showing the Where I've Been / Where I Am Now / Where I'm Going metaphor with scattered actions and a How I Get There sidebar">
               </a>
             </figure>
             <figure>
@@ -461,8 +469,8 @@
                 <span class="comparison-tag after-tag">After</span>
                 Home — a view organized around what needs attention, right now
               </figcaption>
-              <a href="#lightbox-after">
-                <img src="images/home-after.png" alt="Home dashboard with a clear To Do panel, Current Activities, My Requests, and Meetings organized by urgency">
+              <a>
+                <img data-lightbox src="images/home-after.png" alt="Home dashboard with a clear To Do panel, Current Activities, My Requests, and Meetings organized by urgency">
               </a>
             </figure>
           </div>
@@ -553,19 +561,19 @@
         <p>The content users prioritized most was scattered across three branches. An entire branch dedicated to content discovery occupied equal navigational weight despite research showing no participant used the dashboard to find new PD. That finding, more than anything else, shaped the restructuring that followed.</p>
 
         <figure class="case-image">
-          <img src="images/ia-mgj-before.png" alt="IA diagram of My Growth Journey showing four branches: Where I've Been (Completed), Where I Am Now (In Progress, My Requests, My Employee Evals, My Log Entries), Where I'm Going (Upcoming PD, Goals), and How I Get There (Recommended, Shared With Me, New Learning Opps., Product News)">
+          <img data-lightbox src="images/ia-mgj-before.png" alt="IA diagram of My Growth Journey showing four branches: Where I've Been (Completed), Where I Am Now (In Progress, My Requests, My Employee Evals, My Log Entries), Where I'm Going (Upcoming PD, Goals), and How I Get There (Recommended, Shared With Me, New Learning Opps., Product News)">
           <figcaption>Before: The four-branch journey metaphor mapped to system structure, not user intent. "How I Get There" assumed users found professional development through the platform — the ODI research showed all five participants found PD entirely through external channels.</figcaption>
         </figure>
 
         <figure class="case-image">
-          <img src="images/ia-home-after.png" alt="IA diagram of Home showing three branches: Current Activities and Evals (To Do, Current / Upcoming Activities, My Requests, Meetings, Current Evals), Planning (dashed, indicating future scope), and Completed Activities and Evals (Completed Activities, Completed Evals)">
+          <img data-lightbox src="images/ia-home-after.png" alt="IA diagram of Home showing three branches: Current Activities and Evals (To Do, Current / Upcoming Activities, My Requests, Meetings, Current Evals), Planning (dashed, indicating future scope), and Completed Activities and Evals (Completed Activities, Completed Evals)">
           <figcaption>After: Three branches organized around the user's actual relationship to their work — what's active now, what's completed, and (in future scope) what's being planned. The dashed Planning branch signals intentional future investment.</figcaption>
         </figure>
 
         <p><strong>Low-fidelity wireframes.</strong> I moved on to low-fidelity wireframes to focus on the new information hierarchy without worrying about interface styling. I restructured the new landing experience around user intent rather than the growth journey metaphor, organizing content by urgency: what's happening now at the top, in-progress work in the middle, secondary content accessible but visually deprioritized.</p>
 
         <figure class="case-image">
-          <img src="images/low-fidelity-wireframes.png" alt="Low-fidelity wireframe showing the Home layout with a To Do panel on the left, My Requests on the right, Current Activities below, and Product News in the lower right. Sticky notes ask whether the To Do list can auto-refresh as items are completed.">
+          <img data-lightbox src="images/low-fidelity-wireframes.png" alt="Low-fidelity wireframe showing the Home layout with a To Do panel on the left, My Requests on the right, Current Activities below, and Product News in the lower right. Sticky notes ask whether the To Do list can auto-refresh as items are completed.">
           <figcaption>Early wireframes exploring the tiled layout. The To Do panel anchors the top left — the first thing a user needs to see. A sticky note captures an open question about auto-refresh behavior as tasks are completed.</figcaption>
         </figure>
 
@@ -581,7 +589,7 @@
         <p><strong>Refining the experience in high fidelity.</strong> The key design challenge was prioritizing urgent content without hiding secondary information. I proposed a visual treatment using background color to create hierarchy within the tiled layout. Primary tiles — To Do and Current Activities — sat on white card backgrounds. Secondary tiles — My Requests, Meetings, What's New — used the page's gray background, appearing "set back" from the primary content. The effect created a clear scannable hierarchy without fragmenting the layout.</p>
 
         <figure class="case-image">
-          <img src="images/home-after.png" alt="Home dashboard showing the final high-fidelity design with To Do and Current Activities on white card backgrounds, and My Requests and Meetings visually receded on the page background">
+          <img data-lightbox src="images/home-after.png" alt="Home dashboard showing the final high-fidelity design with To Do and Current Activities on white card backgrounds, and My Requests and Meetings visually receded on the page background">
           <figcaption>Final high-fidelity design. White card backgrounds on To Do and Current Activities pull urgent content forward. Secondary tiles sit directly on the page surface — same typography, same placement, no card.</figcaption>
         </figure>
 
@@ -619,41 +627,64 @@
     </main>
   </div>
 
-  <!-- ── LIGHTBOXES (CSS-only, :target) ─────────────────────────── -->
-  <div id="lightbox-before" class="lightbox">
-    <a href="#overview" class="lightbox-close">×</a>
-    <img src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard — before">
-  </div>
-
-  <div id="lightbox-after" class="lightbox">
-    <a href="#overview" class="lightbox-close">×</a>
-    <img src="images/home-after.png" alt="Home dashboard — after">
-  </div>
-
-  <!-- ── PULL QUOTE ENTRANCE ANIMATION ────────────────────────────── -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      // Pull quote entrance animation
       const quotes = document.querySelectorAll('.pull-quote');
-
       if (!('IntersectionObserver' in window)) {
         quotes.forEach(q => q.classList.add('is-visible'));
-        return;
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
       }
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      // Lightbox
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox';
 
-      // Small delay ensures the browser has painted the initial opacity:0 state
-      // before we start observing — prevents instant trigger on page load
-      setTimeout(() => {
-        quotes.forEach(q => observer.observe(q));
-      }, 100);
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'lightbox-close';
+      closeBtn.textContent = '×';
+      closeBtn.setAttribute('aria-label', 'Close');
+
+      const lightboxImg = document.createElement('img');
+
+      overlay.appendChild(closeBtn);
+      overlay.appendChild(lightboxImg);
+      document.body.appendChild(overlay);
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('img[data-lightbox]').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
     });
   </script>
 
