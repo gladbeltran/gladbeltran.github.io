@@ -125,8 +125,8 @@
       padding: 2rem 0 2.5rem;
     }
 
-    .case-study-page .overview-narrative h3,
-    .case-study-page .overview-details h3 {
+    .case-study-page .overview-narrative h2,
+    .case-study-page .overview-details h2 {
       font-size: 0.78rem;
       font-weight: 400;
       letter-spacing: 0.14em;
@@ -136,8 +136,8 @@
       margin-top: 1.5rem;
     }
 
-    .case-study-page .overview-narrative h3:first-child,
-    .case-study-page .overview-details h3:first-child {
+    .case-study-page .overview-narrative h2:first-child,
+    .case-study-page .overview-details h2:first-child {
       margin-top: 0;
     }
 
@@ -402,6 +402,11 @@
       opacity: 1;
     }
 
+    .case-study-page .lightbox-close:focus-visible {
+      outline: 2px solid var(--fleece);
+      outline-offset: 3px;
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .case-study-page .comparison-grid {
@@ -434,6 +439,7 @@
   </style>
 </head>
 <body class="case-study-page">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
   <div class="layout">
     <nav>
@@ -442,7 +448,7 @@
       <a href="#full-case">Full case</a>
     </nav>
 
-    <main>
+    <main id="main-content">
 
       <header class="case-header">
         <h1>From Friction to Focus</h1>
@@ -468,18 +474,18 @@
                 <span class="comparison-tag before-tag">Before</span>
                 My Growth Journey — organized around a metaphor nobody used
               </figcaption>
-              <a>
+              <button class="lightbox-trigger" aria-label="View full size image">
                 <img data-lightbox src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard showing the Where I've Been / Where I Am Now / Where I'm Going metaphor with scattered actions and a How I Get There sidebar">
-              </a>
+              </button>
             </figure>
             <figure>
               <figcaption class="comparison-label">
                 <span class="comparison-tag after-tag">After</span>
                 Home — a view organized around what needs attention, right now
               </figcaption>
-              <a>
+              <button class="lightbox-trigger" aria-label="View full size image">
                 <img data-lightbox src="images/home-after.png" alt="Home dashboard with a clear To Do panel, Current Activities, My Requests, and Meetings organized by urgency">
-              </a>
+              </button>
             </figure>
           </div>
         </div>
@@ -487,18 +493,18 @@
         <div class="overview-grid">
 
           <div class="overview-narrative">
-            <h3>The Brief</h3>
+            <h2>The Brief</h2>
             <p>My Growth Journey (MGJ) was a legacy redesign that was not making users happier. It was supposed to be a new dashboard experience that helped staff "focus on their growth and not on keeping track of it."</p>
             <p>Even after MGJ was released, Professional Learning Management had the lowest NPS score of all of Frontline Education's products included in the surveys.</p>
             <p>Based on existing research and analytics available to me, I proposed a new design direction that delivered on the original promise.</p>
 
-            <h3>Outcome</h3>
+            <h2>Outcome</h2>
             <p>My new design direction produced unanimous positive responses across 6 participants. The final designs were in active development at the time of my departure from Frontline.</p>
             <p>I also made new contributions to our design system which were approved as reusable React components, making my designs available for use across all of Frontline's products.</p>
           </div>
 
           <div class="overview-details">
-            <h3>What I Did</h3>
+            <h2>What I Did</h2>
             <ul class="overview-did">
               <li>In roadmap planning, identified the MGJ landing experience as the highest-impact opportunity and made the case to cross-functional leadership</li>
               <li>Translated existing ODI research into a new design direction</li>
@@ -507,7 +513,7 @@
               <li>Contributed new reusable components to the design system</li>
             </ul>
 
-            <h3>Methods</h3>
+            <h2>Methods</h2>
             <ul class="overview-methods">
               <li>Opportunity scoring / prioritization</li>
               <li>Research synthesis</li>
@@ -580,18 +586,18 @@
             <div class="comparison-label">
               <span class="comparison-tag before-tag">Before</span>
             </div>
-            <a>
+            <button class="lightbox-trigger" aria-label="View full size image">
               <img data-lightbox src="images/annotated-ia.png" alt="Annotated IA diagram of My Growth Journey with red boxes marking high-frequency priority tasks and orange marking content users valued but visited less often">
-            </a>
+            </button>
             <figcaption style="font-size:0.78rem;font-weight:300;color:var(--muted);margin-top:0.6rem;line-height:1.5;">The content users came to act on was buried two levels deep across three separate branches. Red boxes mark high-frequency priority tasks; orange marks content users valued but visited less often.</figcaption>
           </figure>
           <figure>
             <div class="comparison-label">
               <span class="comparison-tag after-tag">After</span>
             </div>
-            <a>
+            <button class="lightbox-trigger" aria-label="View full size image">
               <img data-lightbox src="images/ia-home-after.png" alt="IA diagram of Home showing three branches: Current Activities and Evals (To Do, Current / Upcoming Activities, My Requests, Meetings, Current Evals), Planning (dashed, indicating future scope), and Completed Activities and Evals (Completed Activities, Completed Evals)">
-            </a>
+            </button>
             <figcaption style="font-size:0.78rem;font-weight:300;color:var(--muted);margin-top:0.6rem;line-height:1.5;">Three branches organized around the user's actual relationship to their work. The dashed Planning branch signals intentional future investment rather than a gap.</figcaption>
           </figure>
         </div>
@@ -706,6 +712,7 @@
         lightboxImg.alt = alt || '';
         overlay.classList.add('is-open');
         document.body.style.overflow = 'hidden';
+        closeBtn.focus();
       }
 
       function closeLightbox() {

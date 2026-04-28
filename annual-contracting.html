@@ -62,8 +62,8 @@
       padding: 2rem 0 2.5rem;
     }
 
-    .case-study-page .overview-narrative h3,
-    .case-study-page .overview-details h3 {
+    .case-study-page .overview-narrative h2,
+    .case-study-page .overview-details h2 {
       font-size: 0.78rem;
       font-weight: 400;
       letter-spacing: 0.14em;
@@ -73,8 +73,8 @@
       margin-top: 1.5rem;
     }
 
-    .case-study-page .overview-narrative h3:first-child,
-    .case-study-page .overview-details h3:first-child {
+    .case-study-page .overview-narrative h2:first-child,
+    .case-study-page .overview-details h2:first-child {
       margin-top: 0;
     }
 
@@ -313,6 +313,11 @@
       opacity: 1;
     }
 
+    .case-study-page .lightbox-close:focus-visible {
+      outline: 2px solid var(--fleece);
+      outline-offset: 3px;
+    }
+
     @media (max-width: 768px) {
       .case-study-page .overview-grid {
         grid-template-columns: 1fr;
@@ -332,6 +337,7 @@
   </style>
 </head>
 <body class="case-study-page">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
   <div class="layout">
     <nav>
@@ -340,7 +346,7 @@
       <a href="#full-case">Full case</a>
     </nav>
 
-    <main>
+    <main id="main-content">
 
       <header class="case-header">
         <h1>Reducing Risk in a High-Stakes Workflow</h1>
@@ -362,17 +368,17 @@
         <div class="overview-grid">
 
           <div class="overview-narrative">
-            <h3>The Brief</h3>
+            <h2>The Brief</h2>
             <p>Annual contracting in K–12 districts is one of the highest-stakes workflows in school administration. A single distribution error can affect hundreds of employees at once, creating compliance risk, rework, and significant burden on support teams.</p>
             <p>Frontline Central's contracting tools weren't keeping up with how districts actually worked. Districts were forced to create multiple contracts per employee, make distribution decisions without adequate guidance, and lean heavily on manual workarounds during the most time-sensitive weeks of the year.</p>
             <p>Based on existing customer research and analysis of 38 real district contracts, I proposed and led a design direction that made contracting more accurate, less error-prone, and significantly more trusted.</p>
 
-            <h3>Outcome</h3>
+            <h2>Outcome</h2>
             <p>Within six months of release, the redesigned tools drove a 34% increase in adoption of annual contracting features — from 40% to 65% of eligible districts. Support tickets related to contract forms dropped 27% during peak contracting season.</p>
           </div>
 
           <div class="overview-details">
-            <h3>What I Did</h3>
+            <h2>What I Did</h2>
             <ul class="overview-did">
               <li>Synthesized existing customer research and analyzed 38 real contracts to identify workflow patterns and design requirements</li>
               <li>Led interaction design from early exploration through clickable prototypes modeling complex scenarios and edge cases</li>
@@ -382,7 +388,7 @@
               <li>Led design reviews with the broader UX team to validate patterns</li>
             </ul>
 
-            <h3>Methods</h3>
+            <h2>Methods</h2>
             <ul class="overview-methods">
               <li>Research synthesis</li>
               <li>Contract analysis (38 documents)</li>
@@ -552,6 +558,7 @@
         lightboxImg.alt = alt || '';
         overlay.classList.add('is-open');
         document.body.style.overflow = 'hidden';
+        closeBtn.focus();
       }
 
       function closeLightbox() {

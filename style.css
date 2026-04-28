@@ -38,9 +38,9 @@
     --shadow:  #3a3228;
   
     --border:        #e2ddd6;
-    --muted:         #6b5f58;
+    --muted:         #5e534c;
     --nav-link:      var(--woad);
-    --section-label: #7a6e67;
+    --section-label: #5c5149;
   
     /* Fibonacci spacing scale — a nod to natural fiber ratios */
     --space-xs: 0.618rem;
@@ -70,9 +70,16 @@
     text-decoration: none;
     transition: color 0.2s ease;
   }
-  
+
   a:hover {
     color: var(--madder);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--woad);
+    outline-offset: 2px;
+    border-radius: 1px;
   }
   
   /* --- LAYOUT --- */
@@ -220,6 +227,13 @@
   box-shadow: 0 4px 20px rgba(58, 50, 40, 0.08);
 }
 
+.work-entry:focus-visible {
+  outline: 2px solid var(--woad);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(58, 50, 40, 0.08);
+}
+
 .work-problem {
   font-size: 1.35rem;
   font-weight: 300;
@@ -361,6 +375,44 @@
   
  
   }
+/* --- SKIP LINK --- */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--shadow);
+  color: var(--fleece);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 2px;
+  z-index: 9999;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* --- LIGHTBOX TRIGGER BUTTON --- */
+
+.lightbox-trigger {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: zoom-in;
+  width: 100%;
+}
+
+.lightbox-trigger:focus-visible {
+  outline: 2px solid var(--woad);
+  outline-offset: 2px;
+}
+
 /* --- CASE STUDY PAGES --- */
 
 .case-study-page .layout {
