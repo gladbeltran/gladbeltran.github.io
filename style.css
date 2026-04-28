@@ -55,7 +55,27 @@
     margin: 0;
     padding: 0;
   }
-  
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--shadow);
+  color: var(--fleece);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 2px;
+  z-index: 9999;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
   body {
     font-family: 'Untitled Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     font-weight: 300;
@@ -375,28 +395,6 @@
   
  
   }
-/* --- SKIP LINK --- */
-
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--shadow);
-  color: var(--fleece);
-  font-size: 0.82rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  border-radius: 2px;
-  z-index: 9999;
-  transition: top 0.15s ease;
-}
-
-.skip-link:focus {
-  top: 1rem;
-}
-
 /* --- LIGHTBOX TRIGGER BUTTON --- */
 
 .lightbox-trigger {
