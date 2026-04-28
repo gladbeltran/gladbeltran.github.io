@@ -538,25 +538,6 @@
   opacity: 0.85;
 }
 
-/* --- SCROLL INDICATOR --- */
-
-.scroll-indicator {
-  text-align: center;
-  padding: var(--space-lg) 0;
-  border-top: 1px solid var(--border);
-}
-
-.scroll-indicator a {
-  font-size: 0.82rem;
-  color: var(--muted);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-}
-
-.scroll-indicator a:hover {
-  color: var(--shadow);
-}
-
 /* --- LIGHTBOX --- */
 
 .lightbox {
