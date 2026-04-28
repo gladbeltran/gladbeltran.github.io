@@ -614,6 +614,15 @@
   color: var(--shadow);
 }
 
+.case-narrative h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--woad);
+  margin-top: 1.6rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
 /* --- RESPONSIVE --- */
 
 @media (max-width: 860px) {

@@ -411,7 +411,8 @@
 
         <h2>Gathering Insights</h2>
 
-        <p><strong>Contract analysis.</strong> Previous design decisions had been made based on institutional knowledge and assumptions about how districts structured employment agreements. To get to the reality of how those agreements actually worked, I analyzed 38 real contracts collected from districts across multiple states through prior customer research.</p>
+        <h3>Contract analysis</h3>
+        <p>Previous design decisions had been made based on institutional knowledge and assumptions about how districts structured employment agreements. To get to the reality of how those agreements actually worked, I analyzed 38 real contracts collected from districts across multiple states through prior customer research.</p>
 
         <p>Terminology varied. Formatting varied. But the underlying structure didn't.</p>
 
@@ -421,13 +422,15 @@
 
         <p>Distribution errors were the highest-consequence failure mode. Mistakes during distribution — sending the wrong contract configuration to the wrong group, or issuing assignments separately when they should have been consolidated — were both common and difficult to fix. The decision point where those errors happened was also the least supported moment in the existing workflow.</p>
 
-        <p><strong>Customer research synthesis.</strong> Beyond the contract analysis, existing customer research surfaced the human cost of these gaps. Administrators described manually emailing staff to follow up on contract status. Customer Success teams described fielding spikes in support tickets every spring. Districts with complex employment structures described avoiding the digital contracting tools altogether during crunch time because the risk of getting it wrong was too high.</p>
+        <h3>Customer research synthesis</h3>
+        <p>Beyond the contract analysis, existing customer research surfaced the human cost of these gaps. Administrators described manually emailing staff to follow up on contract status. Customer Success teams described fielding spikes in support tickets every spring. Districts with complex employment structures described avoiding the digital contracting tools altogether during crunch time because the risk of getting it wrong was too high.</p>
 
         <p>The pattern was consistent: the system was losing trust at exactly the moments when administrators needed to rely on it most.</p>
 
         <h2>Design Process</h2>
 
-        <p><strong>Early exploration and a necessary pivot.</strong> Before settling on a direction, I explored representing multiple assignments inline using the existing Rich Text Editor with tokenized data. On the surface, it had appeal: administrators would retain full formatting control, and it wouldn't require new infrastructure.</p>
+        <h3>Early exploration and a necessary pivot</h3>
+        <p>Before settling on a direction, I explored representing multiple assignments inline using the existing Rich Text Editor with tokenized data. On the surface, it had appeal: administrators would retain full formatting control, and it wouldn't require new infrastructure.</p>
 
         <p>Two problems made it unworkable. First, the third-party rich text editor the form builder relied on couldn't be reliably customized without significant engineering investment and ongoing maintenance risk. Second, early wireframes showed the experience was genuinely fragile: it placed a high cognitive burden on administrators to format complex assignment data correctly, in a context where getting it wrong had real consequences.</p>
 
@@ -438,7 +441,8 @@
 
         <p>I presented these findings to the product team and made the case for a different direction. The pivot wasn't a compromise — a more opinionated approach would actually serve administrators better under pressure than a flexible one that required them to get the structure right themselves.</p>
 
-        <p><strong>Modeling multiple assignments.</strong> I reframed the problem: how might we support multiple assignments within a single contract while preserving clarity, usability, and technical feasibility?</p>
+        <h3>Modeling multiple assignments</h3>
+        <p>I reframed the problem: how might we support multiple assignments within a single contract while preserving clarity, usability, and technical feasibility?</p>
 
         <p>The answer was a structured table layout built on existing Form Builder patterns. Rather than asking administrators to construct assignment data through free-form formatting, the interface represented Primary, Secondary, and Supplemental assignments clearly and consistently: scannable at a glance, accurate by design.</p>
 
@@ -451,7 +455,8 @@
 
         <p>This assignment model became the foundation for everything that followed.</p>
 
-        <p><strong>Reducing risk at distribution: Contract Groups.</strong> With the assignment model established, the next problem came into focus. Even if contracts were accurately structured, the distribution step still lacked the clarity administrators needed to act confidently. Whether assignments should be issued as one consolidated contract or as separate contracts is a consequential decision, and it was happening at the exact moment of highest risk, with the least support.</p>
+        <h3>Reducing risk at distribution: Contract Groups</h3>
+        <p>With the assignment model established, the next problem came into focus. Even if contracts were accurately structured, the distribution step still lacked the clarity administrators needed to act confidently. Whether assignments should be issued as one consolidated contract or as separate contracts is a consequential decision, and it was happening at the exact moment of highest risk, with the least support.</p>
 
         <p>I designed the Contract Groups distribution option to surface that decision explicitly at the point of sending. The interface breaks the decision into two clear layers: who is receiving the contract, and how assignments should be issued. Radio controls and defaults guide administrators toward common patterns while preserving precise control where regulations require it. A visual preview lets administrators validate the resulting contract structure before committing to an action that might affect hundreds of employees at once.</p>
 
@@ -462,9 +467,11 @@
 
         <p>The design borrowed from the mental model already established during contract creation: the same Primary, Secondary, and Supplemental assignment types that structured the contract template also structured the distribution decision. Consistency between the two moments reduced cognitive load and made the higher-stakes step feel continuous with the work that came before it.</p>
 
-        <p><strong>Making consequences visible.</strong> The most important design principle throughout this project was that the interface should make the consequence of each decision legible before administrators committed to it. This was especially true at distribution, where the preview component carried significant weight: not as a nice-to-have confirmation, but as the primary mechanism for catching errors before they propagated at scale.</p>
+        <h3>Making consequences visible</h3>
+        <p>The most important design principle throughout this project was that the interface should make the consequence of each decision legible before administrators committed to it. This was especially true at distribution, where the preview component carried significant weight: not as a nice-to-have confirmation, but as the primary mechanism for catching errors before they propagated at scale.</p>
 
-        <p><strong>Collaborating on technical constraints.</strong> Throughout both workstreams, I worked closely with Engineering to make sure the designs remained feasible. Several early ideas had to flex when we got closer to implementation realities. In each case, the constraint produced a cleaner solution — one that relied on existing system patterns rather than requiring new infrastructure to support.</p>
+        <h3>Collaborating on technical constraints</h3>
+        <p>Throughout both workstreams, I worked closely with Engineering to make sure the designs remained feasible. Several early ideas had to flex when we got closer to implementation realities. In each case, the constraint produced a cleaner solution — one that relied on existing system patterns rather than requiring new infrastructure to support.</p>
 
         <h2>Outcome</h2>
 
