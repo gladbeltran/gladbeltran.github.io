@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>From Friction to Focus · glad beltran</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap">
   <link rel="stylesheet" href="style.css">
   <style>
     /* ─── CASE STUDY SCOPED STYLES ─────────────────────────────────────
@@ -227,18 +229,42 @@
 
     /* Pull quote — animated entrance from left */
     .case-study-page .pull-quote {
-      border-left: 2px solid var(--woad);
-      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
       margin: 1.8rem 0;
       max-width: 540px;
+    }
+
+    .case-study-page .pull-quote .mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 4rem;
+      line-height: 0.85;
+      color: var(--madder);
+      flex-shrink: 0;
+      width: 2rem;
       opacity: 0;
       transform: translateX(-18px);
       transition:
-        opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1),
-        transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    .case-study-page .pull-quote.is-visible {
+    .case-study-page .pull-quote .content {
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 1s cubic-bezier(0.23, 1, 0.32, 1) 0.14s,
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.14s;
+    }
+
+    .case-study-page .pull-quote.is-visible .mark {
+      opacity: 0.6;
+      transform: translateX(0);
+    }
+
+    .case-study-page .pull-quote.is-visible .content {
       opacity: 1;
       transform: translateX(0);
     }
@@ -514,8 +540,11 @@
         <p>The previous version of the dashboard had been envisioned and designed based on institutional knowledge from internal stakeholders in Support and Implementation. To reset our understanding, we conducted ODI interviews to get to the reality of how our end users managed their professional development today, whether that included Frontline's tools or not.</p>
 
         <div class="pull-quote">
-          <p>"I probably put in easy 90 hours of PD this year. You know how many I logged? Zero."</p>
-          <cite>High School Teacher · Interview participant</cite>
+          <div class="mark">&ldquo;</div>
+          <div class="content">
+            <p>[The redesign] would help staff not need to dig too deep.</p>
+            <cite>District PD Director · Interview participant</cite>
+          </div>
         </div>
 
         <h3>Logging professional development was so painful, it was costing teachers money</h3>
@@ -573,8 +602,11 @@
         <p>I facilitated interviews with six clients across three districts to validate the design direction. Participants immediately understood the to-do panel without explanation and responded to action-specific CTAs as a direct solution to a problem they'd been living with.</p>
 
         <div class="pull-quote">
-          <p>"The box tells you exactly what I need to do. I don't have to look for it."</p>
-          <cite>First-Grade Teacher · Interview participant</cite>
+          <div class="mark">&ldquo;</div>
+          <div class="content">
+            <p>[The current experience] is a little information overload…this [redesign] seems really focused.</p>
+            <cite>Digital Learning Specialist · Unprompted</cite>
+          </div>
         </div>
 
         <p>A district PD director described the to-do section as "phenomenal" and said it would help staff "not need to dig too deep." A digital learning specialist called the current experience "information overload" and the redesign "really focused" — unprompted. Sessions also surfaced useful refinements: separating upcoming from active items in Current Activities and surfacing activity-related meetings. Both ideas made it to the final designs.</p>
