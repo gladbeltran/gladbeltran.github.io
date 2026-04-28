@@ -31,7 +31,7 @@
 }
 :root {
     --madder:  #a33820;
-    --weld:    #b07d1a;
+    --weld:    #8f6100;
     --woad:    #3a5c7a;
     --walnut:  #5a3e28;
     --fleece:  #ffffff;
@@ -343,11 +343,11 @@
       --fleece:        #1c1916;
       --shadow:        #ede8e0;
       --border:        #302b26;
-      --muted:         #8a7e78;
+      --muted:         #968a84;
       --section-label: #7a6e67;
       --madder:        #c8513c;
       --weld:          #c89830;
-      --woad:          #5a82a8;
+      --woad:          #6a96be;
       --walnut:        #8a6848;
     }
   
