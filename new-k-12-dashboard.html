@@ -721,7 +721,8 @@
       }
 
       document.querySelectorAll('img[data-lightbox]').forEach(img => {
-        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+        const trigger = img.closest('button.lightbox-trigger') || img;
+        trigger.addEventListener('click', () => openLightbox(img.src, img.alt));
       });
 
       closeBtn.addEventListener('click', closeLightbox);
