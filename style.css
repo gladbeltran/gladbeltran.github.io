@@ -237,9 +237,9 @@ h2 {
 /* --- LOG --- */
 
 .log {
-  background: var(--shadow);
-  border-radius: 0;
-  margin-bottom: 2rem;
+  background: color-mix(in srgb, var(--shadow) 4%, transparent);
+  border-radius: 3px;
+  margin-bottom: 0.25rem;
   overflow: hidden;
 }
 
@@ -247,7 +247,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.2rem;
+  padding: 0.65rem 1rem;
   cursor: pointer;
   user-select: none;
 }
@@ -282,7 +282,7 @@ h2 {
   cursor: pointer;
   padding: 0;
   color: var(--muted);
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity 0.2s ease;
   font-family: inherit;
 }
@@ -292,7 +292,7 @@ h2 {
 }
 
 .log-body {
-  padding: 0 1.2rem 1.1rem;
+  padding: 0 1rem 0.9rem;
   max-height: 200px;
   opacity: 1;
   overflow: hidden;
@@ -309,10 +309,10 @@ h2 {
 }
 
 .log-body p {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 300;
   line-height: 1.65;
-  color: color-mix(in srgb, var(--fleece) 75%, transparent);
+  color: var(--muted);
 }
 
 /* --- WORK CARD GRID --- */
@@ -1010,18 +1010,7 @@ footer {
   }
 
   .log {
-    background: #2e2822;
-    border: 1px solid #4a423c;
-  }
-
-  .log-label,
-  .log-date,
-  .log-toggle {
-    color: #7a6e67;
-  }
-
-  .log-body p {
-    color: #c8c0b4;
+    background: color-mix(in srgb, var(--shadow) 8%, transparent);
   }
 
   .work-card {

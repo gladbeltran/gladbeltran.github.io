@@ -127,6 +127,20 @@
         </p>
       </header>
 
+      <!-- ── LOG ────────────────────────────────────────────────────── -->
+      <div class="log">
+        <div class="log-header" id="logHeader">
+          <div class="log-header-left">
+            <span class="log-label">Current</span>
+            <span class="log-date">April 2026</span>
+          </div>
+          <button class="log-toggle" id="logToggle" aria-label="Expand log">↓ expand</button>
+        </div>
+        <div class="log-body is-collapsed" id="logBody">
+          <p>Finishing case studies and seeking Senior Product Designer roles in B2B enterprise SaaS, fintech, and other complex products. Tinkering with AI tools. Always iterating.</p>
+        </div>
+      </div>
+
       <!-- ── WORK ──────────────────────────────────────────────────── -->
       <section id="work">
         <h2>Work</h2>
@@ -204,7 +218,7 @@
       <!-- ── CONTACT ────────────────────────────────────────────────── -->
       <section id="contact">
         <h2>Contact</h2>
-        <a href="https://linkedin.com/in/gladbeltran" target="_blank" rel="noopener noreferrer">Connect on LinkedIn →</a>
+        <a href="mailto:gladys.beltran@me.com">gladys.beltran@me.com →</a>
       </section>
 
       <footer>
@@ -222,7 +236,7 @@
     const logHeader = document.getElementById('logHeader');
     const logBody   = document.getElementById('logBody');
     const logToggle = document.getElementById('logToggle');
-    let logCollapsed = false;
+    let logCollapsed = true;
 
     logHeader.addEventListener('click', () => {
       logCollapsed = !logCollapsed;
