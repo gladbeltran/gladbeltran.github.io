@@ -12,7 +12,7 @@
       flex-direction: row;
       align-items: center;
       gap: 0.5rem;
-      padding: 2rem 0 1.5rem;
+      padding: 0.5rem 0 1.5rem;
     }
 
     .logo-name {
@@ -87,8 +87,8 @@
       <a href="#contact">contact</a>
     </nav>
     <main id="main-content">
-      <header>
 
+      <header>
         <div class="hero-logo">
           <div class="logo-name">gla<span class="mirrored-d">b</span><span style="display:inline-block;width:0.08em;"></span>beltran</div>
           <div class="spindle-hero">
@@ -123,34 +123,69 @@
         </div>
 
         <p class="hero-tagline">
-        is a product designer, tech tinkerer, and spinner based in Miami, FL who has spent most of her career in B2B enterprise SaaS. She believes constraints are design material.
+          is a product designer, tech tinkerer, and spinner based in Miami, FL who has spent most of her career in B2B enterprise SaaS. She believes constraints are design material.
         </p>
-
       </header>
 
+      <!-- ── WORK ──────────────────────────────────────────────────── -->
       <section id="work">
         <h2>Work</h2>
-        <div class="work-list">
+        <div class="work-grid">
 
-          <a class="work-entry" href="new-k-12-dashboard.html">
-            <div class="work-problem">Removing the friction that cost teachers their raises.</div>
-            <div class="work-title-row">
-              <span class="work-title">From Friction to Focus</span>
-              <span class="work-co">Frontline Education</span>
+          <a class="work-card" href="new-k-12-dashboard.html">
+            <div class="card-image-wrap">
+              <div class="card-image">
+                <img src="images/home-after.png" alt="Home dashboard redesign — final high-fidelity design">
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-problem">Removing the friction that cost teachers their raises.</p>
+              <div class="card-title-row">
+                <span class="card-title">From Friction to Focus</span>
+                <span class="card-co">Frontline Education</span>
+              </div>
+              <div class="card-badges">
+                <span class="badge">Dashboard Redesign</span>
+                <span class="badge badge-in-dev">In Development</span>
+              </div>
+              <div class="card-meta">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">Senior UX Designer</span>
+                <span class="meta-label">Methods</span>
+                <span class="meta-value">Research synthesis · Wireframes · Client validation</span>
+              </div>
             </div>
           </a>
 
-          <a class="work-entry" href="annual-contracting.html">
-            <div class="work-problem">Reducing anxiety during the highest-volume week in K–12 hiring.</div>
-            <div class="work-title-row">
-              <span class="work-title">Reducing Risk in a High-Stakes Workflow</span>
-              <span class="work-co">Frontline Education</span>
+          <a class="work-card" href="annual-contracting.html">
+            <div class="card-image-wrap">
+              <div class="card-image">
+                <img src="images/form-send-preview.png" alt="Annual contracting — contract distribution interface">
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-problem">Increasing confidence during a high-volume week in K–12 hiring.</p>
+              <div class="card-title-row">
+                <span class="card-title">Reducing Risk and Support Burden</span>
+                <span class="card-co">Frontline Education</span>
+              </div>
+              <div class="card-badges">
+                <span class="badge">Workflow Redesign</span>
+                <span class="badge badge-shipped">Shipped</span>
+              </div>
+              <div class="card-meta">
+                <span class="meta-label">Role</span>
+                <span class="meta-value">Senior UX Designer</span>
+                <span class="meta-label">Methods</span>
+                <span class="meta-value">Contract analysis · Prototyping · Usability testing</span>
+              </div>
             </div>
           </a>
 
         </div>
       </section>
 
+      <!-- ── WRITING ────────────────────────────────────────────────── -->
       <section id="writing">
         <h2>Writing</h2>
         <div class="work-list">
@@ -166,6 +201,7 @@
         </div>
       </section>
 
+      <!-- ── CONTACT ────────────────────────────────────────────────── -->
       <section id="contact">
         <h2>Contact</h2>
         <a href="mailto:gladys.beltran@me.com">gladys.beltran@me.com →</a>
@@ -174,7 +210,41 @@
       <footer>
         <p>© 2026 glad beltran · coded with twist</p>
       </footer>
+
     </main>
   </div>
+
+  <!-- ── CURSOR LABEL ──────────────────────────────────────────────── -->
+  <div class="cursor-label" id="cursorLabel">View case study</div>
+
+  <script>
+    // Log collapse toggle
+    const logHeader = document.getElementById('logHeader');
+    const logBody   = document.getElementById('logBody');
+    const logToggle = document.getElementById('logToggle');
+    let logCollapsed = false;
+
+    logHeader.addEventListener('click', () => {
+      logCollapsed = !logCollapsed;
+      logBody.classList.toggle('is-collapsed', logCollapsed);
+      logToggle.textContent = logCollapsed ? '↓ expand' : '↑ collapse';
+      logToggle.setAttribute('aria-label', logCollapsed ? 'Expand log' : 'Collapse log');
+    });
+
+    // Cursor label on work cards
+    const label = document.getElementById('cursorLabel');
+    const cards = document.querySelectorAll('.work-card');
+
+    document.addEventListener('mousemove', (e) => {
+      label.style.left = e.clientX + 'px';
+      label.style.top  = e.clientY + 'px';
+    });
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => label.classList.add('is-visible'));
+      card.addEventListener('mouseleave', () => label.classList.remove('is-visible'));
+    });
+  </script>
+
 </body>
 </html>
