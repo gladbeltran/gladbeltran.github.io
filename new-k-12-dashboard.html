@@ -6,237 +6,417 @@
   <meta name="robots" content="noindex, nofollow">
   <title>From Friction to Focus · glad beltran</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ─── CASE STUDY SCOPED STYLES ─────────────────────────────────────
-       All selectors prefixed with .case-study-page to avoid collisions
-       with style.css. Color variables inherited from :root.
-    ──────────────────────────────────────────────────────────────────── */
 
-    /* Header */
-    .case-study-page .case-header {
-      padding: 2.5rem 0 2rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0;
+    .case-study-page .layout {
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .case-study-page .case-header h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+    .cs-sidebar {
+      width: 303px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 3rem 0 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .cs-sidebar-home {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--woad);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+      padding-right: 2rem;
+    }
+
+    .cs-sidebar-home:hover { color: var(--shadow); }
+
+    .cs-sidebar-home .cs-home-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-sidebar-home:hover .cs-home-arrow { transform: translateX(-3px); }
+
+    .cs-toc {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+
+    .cs-toc-label {
+      font-size: 0.65rem;
       font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .cs-toc-pill {
+      position: absolute;
+      left: 0;
+      right: -1px;
+      border-radius: 4px 0 0 4px;
+      background: color-mix(in srgb, var(--shadow) 6%, transparent);
+      pointer-events: none;
+      opacity: 0;
+      height: 28px;
+      transition:
+        transform 0.24s cubic-bezier(0.23, 1, 0.32, 1),
+        height 0.24s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.2s ease;
+    }
+
+    .cs-toc-list li { position: relative; }
+
+    .cs-toc-item {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.35rem 1.5rem 0.35rem 0.5rem;
+      border-radius: 4px 0 0 4px;
+      transition: color 0.2s ease;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .cs-toc-item:hover { color: var(--shadow); }
+
+    .cs-toc-item[data-current] {
+      color: var(--shadow);
+      font-weight: 400;
+    }
+
+    .cs-sidebar-top { margin-top: auto; }
+
+    .cs-back-top {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+      padding-right: 2rem;
+    }
+
+    .cs-back-top:hover { color: var(--shadow); }
+
+    .cs-back-top .cs-top-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-back-top:hover .cs-top-arrow { transform: translateY(-2px); }
+
+    @media (max-width: 960px) {
+      .cs-sidebar { display: none; }
+    }
+
+    .case-study-page main {
+      flex: 1;
+      min-width: 0;
+      padding: 3rem 2.5rem 4rem 3rem;
+      border-left: none;
+    }
+
+    .cs-header {
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 680px;
+    }
+
+    .cs-header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
       letter-spacing: -0.02em;
       line-height: 1.1;
       color: var(--shadow);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .case-study-page .case-subtitle {
+    .cs-header-sub {
       font-size: 1.05rem;
       font-weight: 300;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--muted);
-      margin-bottom: 1rem;
-      max-width: 480px;
+      margin-bottom: 1.25rem;
+      max-width: 520px;
     }
 
-    .case-study-page .case-meta-bar {
+    .cs-meta-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.4rem 0.5rem;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 300;
       letter-spacing: 0.04em;
       color: var(--muted);
     }
 
-    .case-study-page .case-meta-sep {
-      color: var(--border);
+    .cs-meta-sep { color: var(--border); }
+
+    .cs-meta-block {
+      margin: 2.5rem 0;
+      padding: 1.75rem 2rem;
+      background: color-mix(in srgb, var(--madder) 6%, var(--fleece));
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
     }
 
-    /* Overview section */
-    .case-study-page .case-overview {
+    .cs-meta-block-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--madder);
+      margin-bottom: 0.5rem;
+    }
+
+    .cs-meta-block-value {
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--shadow);
+    }
+
+    @media (max-width: 680px) {
+      .cs-meta-block { grid-template-columns: 1fr 1fr; }
+    }
+
+    .cs-brief-outcome {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
       border-bottom: 1px solid var(--border);
+      max-width: 760px;
     }
 
-    /* Before / After comparison */
-    .case-study-page .overview-comparison {
-      margin-bottom: 2.5rem;
+    @media (max-width: 680px) {
+      .cs-brief-outcome { grid-template-columns: 1fr; gap: 2rem; }
     }
 
-    .case-study-page .comparison-grid {
+    .cs-section {
+      padding: 3rem 0 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity 400ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .cs-section[data-visible] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cs-section:first-of-type { padding-top: 2.5rem; }
+
+    .cs-section-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+        }
+
+    .cs-section-heading {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      max-width: 800px;
+    }
+
+    .cs-section-body { max-width: 620px; }
+
+    .cs-section-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--shadow);
+      margin-bottom: 1rem;
+    }
+
+    .cs-section-body p:last-child { margin-bottom: 0; }
+
+    .cs-section-body h3 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--woad);
+      margin-top: 2rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .cs-section-body h4 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--shadow);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      max-width: 560px;
+      line-height: 1.4;
+    }
+
+    .cs-brief-outcome .cs-section-label { margin-bottom: 0.5rem; }
+
+    .cs-brief-outcome p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--shadow);
+      margin-bottom: 0.65rem;
+    }
+
+    .cs-brief-outcome p:last-child { margin-bottom: 0; }
+
+    .cs-comparison { margin: 2.5rem 0; }
+
+    .cs-comparison-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
 
-    .case-study-page .comparison-grid figure {
-      margin: 0;
-    }
+    .cs-comparison-item { margin: 0; }
 
-    .case-study-page .comparison-label {
+    .cs-comparison-label {
       display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
+      align-items: center;
+      gap: 0.6rem;
       font-size: 0.72rem;
       font-weight: 300;
       color: var(--muted);
       margin-bottom: 0.6rem;
-      line-height: 1.4;
     }
 
-    .case-study-page .comparison-tag {
-      font-size: 0.62rem;
+    .cs-comparison-tag {
+      font-size: 0.6rem;
       font-weight: 400;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 0.15rem 0.45rem;
+      padding: 0.18rem 0.5rem;
       border-radius: 2px;
       flex-shrink: 0;
     }
 
-    .case-study-page .before-tag {
-      background: color-mix(in srgb, var(--madder) 12%, transparent);
+    .before-tag {
+      background: color-mix(in srgb, var(--madder) 10%, transparent);
       color: var(--madder);
     }
 
-    .case-study-page .after-tag {
-      background: color-mix(in srgb, var(--woad) 12%, transparent);
+    .after-tag {
+      background: color-mix(in srgb, var(--woad) 10%, transparent);
       color: var(--woad);
     }
 
-    .case-study-page .comparison-grid img {
+    .cs-comparison-item button {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: zoom-in;
+    }
+
+    .cs-comparison-item img {
       width: 100%;
       height: auto;
       display: block;
       border: 1px solid var(--border);
       border-radius: 3px;
+      transition: opacity 0.2s ease;
     }
 
-    .case-study-page .comparison-grid a {
-      display: block;
-    }
+    .cs-comparison-item button:hover img { opacity: 0.92; }
 
-    /* Overview two-column grid */
-    .case-study-page .overview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      padding: 2rem 0 2.5rem;
-    }
-
-    .case-study-page .overview-narrative h2,
-    .case-study-page .overview-details h2 {
+    .cs-comparison-item figcaption {
       font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--section-label);
-      margin-bottom: 0.65rem;
-      margin-top: 1.5rem;
-    }
-
-    .case-study-page .overview-narrative h2:first-child,
-    .case-study-page .overview-details h2:first-child {
-      margin-top: 0;
-    }
-
-    .case-study-page .overview-narrative p {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--shadow);
-      margin-bottom: 0.75rem;
-    }
-
-    .case-study-page .overview-did,
-    .case-study-page .overview-methods {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .case-study-page .overview-did li,
-    .case-study-page .overview-methods li {
-      font-size: 0.88rem;
       font-weight: 300;
-      line-height: 1.55;
-      color: var(--shadow);
-      padding: 0.3rem 0;
-      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
     }
 
-    .case-study-page .overview-did li:last-child,
-    .case-study-page .overview-methods li:last-child {
-      border-bottom: none;
+    @media (max-width: 680px) {
+      .cs-comparison-grid { grid-template-columns: 1fr; }
     }
 
-    /* Full case narrative */
-    .case-study-page .case-narrative {
-      border-bottom: none;
-      padding-bottom: 0;
+    .cs-image { margin: 2rem 0; max-width: 640px; }
+
+    .cs-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: zoom-in;
+      transition: opacity 0.2s ease;
     }
 
-    /* Override h2 within case narrative to be section headers, not labels */
-    .case-study-page .case-narrative h2 {
+    .cs-image img:hover { opacity: 0.92; }
+
+    .cs-image figcaption {
       font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--section-label);
-      margin-top: 2.5rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .case-study-page .case-narrative h2:first-child {
-      margin-top: 0;
-    }
-
-    .case-study-page .case-narrative p {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--shadow);
-      margin-bottom: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
       max-width: 580px;
     }
 
-    .case-study-page .case-narrative p:last-child {
-      margin-bottom: 0;
-    }
-
-    .case-study-page .case-narrative strong {
-      font-weight: 400;
-      color: var(--shadow);
-    }
-
-    /* NPS callout block */
-    .case-study-page .nps-callout {
-      border-left: 2px solid var(--madder);
-      padding: 1rem 1.2rem;
-      margin: 1.5rem 0;
-      background: color-mix(in srgb, var(--madder) 5%, transparent);
-      max-width: 580px;
-    }
-
-    .case-study-page .nps-callout p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: var(--shadow);
-    }
-
-    .case-study-page .nps-callout p + p {
-      margin-top: 0.4rem;
-    }
-
-    /* Pull quote — animated entrance from left */
-    .case-study-page .pull-quote {
+    .pull-quote {
       display: flex;
       align-items: flex-start;
       gap: 0.5rem;
       margin: 1.8rem 0;
-      max-width: 540px;
+      max-width: 560px;
     }
 
-    .case-study-page .pull-quote .mark {
+    .pull-quote .mark {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 4rem;
@@ -251,7 +431,7 @@
         transform 1s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    .case-study-page .pull-quote .content {
+    .pull-quote .content {
       opacity: 0;
       transform: translateX(-18px);
       transition:
@@ -259,17 +439,10 @@
         transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.14s;
     }
 
-    .case-study-page .pull-quote.is-visible .mark {
-      opacity: 0.6;
-      transform: translateX(0);
-    }
+    .pull-quote.is-visible .mark { opacity: 0.6; transform: translateX(0); }
+    .pull-quote.is-visible .content { opacity: 1; transform: translateX(0); }
 
-    .case-study-page .pull-quote.is-visible .content {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .case-study-page .pull-quote p {
+    .pull-quote p {
       font-size: 1.05rem;
       font-style: italic;
       color: var(--shadow);
@@ -277,7 +450,7 @@
       line-height: 1.55;
     }
 
-    .case-study-page .pull-quote cite {
+    .pull-quote cite {
       display: block;
       font-size: 0.72rem;
       font-style: normal;
@@ -286,78 +459,36 @@
       margin-top: 0.5rem;
     }
 
-    /* Case study images */
-    .case-study-page .case-image {
-      margin: 2rem 0;
-      max-width: 620px;
-    }
-
-    .case-study-page .case-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-    }
-
-    .case-study-page .case-image figcaption {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--muted);
-      margin-top: 0.6rem;
-      line-height: 1.5;
-      max-width: 560px;
-    }
-
-    /* Key Takeaways closing section */
-    .case-study-page .case-takeaways {
-      margin-top: 3rem;
+    .cs-takeaways {
+      margin-top: 3.5rem;
       padding-top: 2.5rem;
       border-top: 1px solid var(--border);
-      max-width: 580px;
+      max-width: 640px;
     }
 
-    .case-study-page .case-takeaways h2 {
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--section-label);
-      margin-bottom: 1.5rem;
-      margin-top: 0;
-    }
+    .cs-takeaways .cs-section-label { margin-bottom: 1.5rem; }
 
-    .case-study-page .takeaway-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    .cs-takeaway-list { list-style: none; padding: 0; margin: 0; }
 
-    .case-study-page .takeaway-list li {
+    .cs-takeaway-list li {
       font-size: 0.9rem;
       font-weight: 300;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--shadow);
-      padding: 1rem 0;
+      padding: 1.1rem 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .case-study-page .takeaway-list li:last-child {
-      border-bottom: none;
-    }
+    .cs-takeaway-list li:last-child { border-bottom: none; }
 
-    .case-study-page .takeaway-list strong {
+    .cs-takeaway-list strong {
       font-weight: 400;
       color: var(--shadow);
       display: block;
       margin-bottom: 0.2rem;
     }
 
-    /* Lightbox (CSS-only) */
-    .case-study-page .lightbox {
+    .cs-lightbox {
       display: none;
       position: fixed;
       inset: 0;
@@ -368,28 +499,21 @@
       padding: 2rem;
     }
 
-    .case-study-page .lightbox.is-open {
-      display: flex;
-    }
+    .cs-lightbox.is-open { display: flex; }
 
-    .case-study-page img[data-lightbox] {
-      cursor: zoom-in;
-    }
-
-    .case-study-page .lightbox img {
+    .cs-lightbox img {
       max-width: 100%;
       max-height: 90vh;
       object-fit: contain;
       border-radius: 3px;
     }
 
-    .case-study-page .lightbox-close {
+    .cs-lightbox-close {
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
       color: var(--fleece);
       font-size: 1.5rem;
-      text-decoration: none;
       line-height: 1;
       opacity: 0.7;
       background: none;
@@ -398,260 +522,263 @@
       cursor: pointer;
     }
 
-    .case-study-page .lightbox-close:hover {
-      opacity: 1;
-    }
+    .cs-lightbox-close:hover { opacity: 1; }
 
-    .case-study-page .lightbox-close:focus-visible {
+    .cs-lightbox-close:focus-visible {
       outline: 2px solid var(--fleece);
       outline-offset: 3px;
     }
 
-    /* Mobile */
-    @media (max-width: 768px) {
-      .case-study-page .comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-
-      .case-study-page .overview-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .case-study-page .case-header h1 {
-        font-size: 1.8rem;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      .cs-section { opacity: 1; transform: none; transition: none; }
+      .pull-quote .mark, .pull-quote .content { opacity: 1; transform: none; transition: none; }
+      .pull-quote .mark { opacity: 0.6; }
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      .case-study-page .before-tag {
-        background: color-mix(in srgb, var(--madder) 18%, transparent);
-      }
-      .case-study-page .after-tag {
-        background: color-mix(in srgb, var(--woad) 18%, transparent);
-      }
-      .case-study-page .nps-callout {
-        background: color-mix(in srgb, var(--madder) 8%, transparent);
-      }
-    }
   </style>
 </head>
 <body class="case-study-page">
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
-  <div class="layout">
-    <nav>
-      <a href="index.html#work">← Work</a>
-      <a href="#overview">Overview</a>
-      <a href="#full-case">Full case</a>
-    </nav>
+
+  <div class="layout" id="top">
+
+    <aside class="cs-sidebar">
+      <a href="index.html" class="cs-sidebar-home">
+        <span class="cs-home-arrow" aria-hidden="true">←</span>
+        <span>Home</span>
+      </a>
+      <nav class="cs-toc" aria-label="Table of contents">
+        <p class="cs-toc-label">Contents</p>
+        <ul class="cs-toc-list" id="cs-toc-list">
+          <span class="cs-toc-pill" id="cs-toc-pill" aria-hidden="true"></span>
+          <li><a href="#problem"     class="cs-toc-item" data-section="problem">01. The Problem</a></li>
+          <li><a href="#opportunity" class="cs-toc-item" data-section="opportunity">02. Opportunity</a></li>
+          <li><a href="#insights"    class="cs-toc-item" data-section="insights">03. Insights</a></li>
+          <li><a href="#process"     class="cs-toc-item" data-section="process">04. Design Process</a></li>
+          <li><a href="#outcome"     class="cs-toc-item" data-section="outcome">05. Outcome</a></li>
+          <li><a href="#takeaways"   class="cs-toc-item" data-section="takeaways">06. Takeaways</a></li>
+        </ul>
+      </nav>
+      <a href="#top" class="cs-back-top cs-sidebar-top">
+        <span class="cs-top-arrow" aria-hidden="true">↑</span>
+        <span>Back to top</span>
+      </a>
+    </aside>
 
     <main id="main-content">
 
-      <header class="case-header">
+      <header class="cs-header">
         <h1>From Friction to Focus</h1>
-        <p class="case-subtitle">Turning a dashboard teachers dreaded into one that felt like a relief.</p>
-        <div class="case-meta-bar">
-          <span class="case-meta-item">Frontline Education</span>
-          <span class="case-meta-sep">·</span>
-          <span class="case-meta-item">Senior UX Designer</span>
-          <span class="case-meta-sep">·</span>
-          <span class="case-meta-item">Dashboard Redesign</span>
-          <span class="case-meta-sep">·</span>
-          <span class="case-meta-item">K–12 Ed-Tech</span>
+        <p class="cs-header-sub">Turning a dashboard teachers dreaded into one that felt like a relief.</p>
+        <div class="cs-meta-bar">
+          <span>Frontline Education</span>
+          <span class="cs-meta-sep">·</span>
+          <span>Senior UX Designer</span>
+          <span class="cs-meta-sep">·</span>
+          <span>Dashboard Redesign</span>
+          <span class="cs-meta-sep">·</span>
+          <span>K–12 Ed-Tech</span>
         </div>
       </header>
 
-      <!-- ── OVERVIEW ─────────────────────────────────────────────── -->
-      <section id="overview" class="case-overview">
-
-        <div class="overview-comparison">
-          <div class="comparison-grid">
-            <figure>
-              <figcaption class="comparison-label">
-                <span class="comparison-tag before-tag">Before</span>
-                My Growth Journey — organized around a metaphor nobody used
-              </figcaption>
-              <button class="lightbox-trigger" aria-label="View full size image">
-                <img data-lightbox src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard showing the Where I've Been / Where I Am Now / Where I'm Going metaphor with scattered actions and a How I Get There sidebar">
-              </button>
-            </figure>
-            <figure>
-              <figcaption class="comparison-label">
-                <span class="comparison-tag after-tag">After</span>
-                Home — a view organized around what needs attention, right now
-              </figcaption>
-              <button class="lightbox-trigger" aria-label="View full size image">
-                <img data-lightbox src="images/home-after.png" alt="Home dashboard with a clear To Do panel, Current Activities, My Requests, and Meetings organized by urgency">
-              </button>
-            </figure>
-          </div>
+      <div class="cs-meta-block">
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">My Role</p>
+          <p class="cs-meta-block-value">Senior UX Designer</p>
         </div>
-
-        <div class="overview-grid">
-
-          <div class="overview-narrative">
-            <h2>The Brief</h2>
-            <p>My Growth Journey (MGJ) was a legacy redesign that was not making users happier. It was supposed to be a new dashboard experience that helped staff "focus on their growth and not on keeping track of it."</p>
-            <p>Even after MGJ was released, Professional Learning Management had the lowest NPS score of all of Frontline Education's products included in the surveys.</p>
-            <p>Based on existing research and analytics available to me, I proposed a new design direction that delivered on the original promise.</p>
-
-            <h2>Outcome</h2>
-            <p>My new design direction produced unanimous positive responses across 6 participants. The final designs were in active development at the time of my departure from Frontline.</p>
-            <p>I also made new contributions to our design system which were approved as reusable React components, making my designs available for use across all of Frontline's products.</p>
-          </div>
-
-          <div class="overview-details">
-            <h2>What I Did</h2>
-            <ul class="overview-did">
-              <li>In roadmap planning, identified the MGJ landing experience as the highest-impact opportunity and made the case to cross-functional leadership</li>
-              <li>Translated existing ODI research into a new design direction</li>
-              <li>Led the redesign from wireframes through high-fidelity specs</li>
-              <li>Planned and facilitated client validation sessions</li>
-              <li>Contributed new reusable components to the design system</li>
-            </ul>
-
-            <h2>Methods</h2>
-            <ul class="overview-methods">
-              <li>Opportunity scoring / prioritization</li>
-              <li>Research synthesis</li>
-              <li>Low-fidelity wireframes</li>
-              <li>High-fidelity mockups</li>
-              <li>Client validation interviews</li>
-              <li>Design system contribution</li>
-            </ul>
-          </div>
-
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">Team</p>
+          <p class="cs-meta-block-value">Two Product Managers<br>Engineering Lead<br>Two Dev Teams (One offshore)</p>
         </div>
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">Timeline</p>
+          <p class="cs-meta-block-value">2024–2025<br>Frontline Education</p>
+        </div>
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">Methods</p>
+          <p class="cs-meta-block-value">Research synthesis<br>Wireframes<br>Client validation<br>Design system</p>
+        </div>
+      </div>
 
+      <div class="cs-brief-outcome">
+        <div>
+          <p class="cs-section-label">The Brief</p>
+          <p>My Growth Journey was a legacy redesign that was not making users happier. It was supposed to help staff "focus on their growth and not on keeping track of it." After release, Professional Learning Management had the lowest NPS score of all of Frontline's products.</p>
+          <p>Based on existing research and analytics available to me, I proposed a new design direction that delivered on the original promise.</p>
+        </div>
+        <div>
+          <p class="cs-section-label">Outcome</p>
+          <p>The new design direction received unanimous positive responses across 6 validation participants. The final designs were in active development at the time of my departure from Frontline.</p>
+          <p>The new components I contributed to the design system were approved as reusable React components, available across all of Frontline's products.</p>
+        </div>
+      </div>
+
+      <div class="cs-comparison">
+        <div class="cs-comparison-grid">
+          <figure class="cs-comparison-item">
+            <div class="cs-comparison-label">
+              <span class="cs-comparison-tag before-tag">Before</span>
+              My Growth Journey: Based on a metaphor nobody used
+            </div>
+            <button aria-label="View full size">
+              <img data-lightbox src="images/mygrowthjourney-before.png" alt="My Growth Journey dashboard">
+            </button>
+          </figure>
+          <figure class="cs-comparison-item">
+            <div class="cs-comparison-label">
+              <span class="cs-comparison-tag after-tag">After</span>
+              Home: Organized around what needs attention, right now
+            </div>
+            <button aria-label="View full size">
+              <img data-lightbox src="images/home-after.png" alt="Home dashboard redesign">
+            </button>
+          </figure>
+        </div>
+      </div>
+
+      <section id="problem" class="cs-section" data-cs-section>
+        <p class="cs-section-label">The Problem</p>
+        <h2 class="cs-section-heading">Leaving money on the table</h2>
+        <div class="cs-section-body">
+          <p>Our PLM product was so hard to use that teachers dreaded logging in to complete their professional development. In one case, it literally cost someone a raise.</p>
+          <p>Users just wanted to get in, see what needed attention, and get out. But the existing experience scattered critical actions, progress indicators, and approvals across a layout that didn't match their mental model. They had no idea where to look to get the information they cared about.</p>
+        </div>
       </section>
 
-      <!-- ── FULL CASE ──────────────────────────────────────────────── -->
-      <section id="full-case" class="case-narrative">
+      <section id="opportunity" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Identifying the Opportunity</p>
+        <h2 class="cs-section-heading">The landing experience was the highest leverage fix</h2>
+        <div class="cs-section-body">
+          <p>I proposed this initiative during a cross-functional roadmap planning meeting while we reviewed recent NPS scores. I noted that users repeatedly flagged navigation as a pain point.</p>
+          <p>I recommended the landing experience as the place where we could make the biggest impact with the least development effort.</p>
+        </div>
+        <figure class="cs-image" style="margin-top: 1.5rem;">
+          <img data-lightbox src="images/mygrowthjourney-before.png" alt="The legacy landing page: My Growth Journey">
+          <figcaption>The legacy landing page which had been implemented based on internal knowledge and not user research.</figcaption>
+        </figure>
+      </section>
 
-        <h2>The Problem</h2>
-        <p>Our PLM product was so hard to use that teachers dreaded logging in to complete their professional development. In one case, it literally cost someone a raise.</p>
-        <p>Users just wanted to get in, see what needed attention, and get out. But the existing experience scattered critical actions, progress indicators, and approvals across a layout that didn't match their mental model. They had no idea where to look to get the information they cared about.</p>
+      <section id="insights" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Gathering Insights</p>
+        <h2 class="cs-section-heading">Triangulating findings: ODI, NPS, and page analytics</h2>
+        <div class="cs-section-body">
+          <h3>Outcome Driven Innovation interviews</h3>
+          <p>The previous dashboard had been designed based on institutional knowledge from internal stakeholders. To reset our understanding, we conducted ODI interviews to learn how end users actually managed their professional development — whether that included Frontline's tools or not.</p>
+          <h4>Logging professional development was so painful, it was costing teachers money</h4>
+          <div class="pull-quote">
+            <div class="mark">&ldquo;</div>
+            <div class="content">
+              <p>I probably put in easy 90 hours of PD this year. You know how many I logged? Zero.</p>
+              <cite>High School Teacher · Interview Participant</cite>
+            </div>
+          </div>
+          <p>One participant had completed roughly 90 hours of professional development and logged none of it — the consequence was a missed pay raise. They had stopped believing the effort to document was proportional to the benefit.</p>
+          <h4>My Growth Journey did not match the mental model of our users</h4>
+          <p>My Growth Journey organized itself around a reflective metaphor — "Where I've Been / Where I Am Now / Where I'm Going" — that didn't match how anyone actually used the system. The mental model was task management, not a literal growth journey. The mismatch meant the most prominent element on the page was the least useful.</p>
+          <h4>"Waiting on someone else" is an important state to represent</h4>
+          <div class="pull-quote">
+            <div class="mark">&ldquo;</div>
+            <div class="content">
+              <p>I don't know what's your end, what's my end — so it just sits there.</p>
+              <cite>First Grade Teacher · Interview Participant</cite>
+            </div>
+          </div>
+          <p>One teacher described spending months re-clicking through completed items because she couldn't tell if she needed to take further action to clear them off her list. Another had a weekly check-in ritual. One admin described individually emailing teachers because she couldn't see completion status without her own tracker.</p>
+          <h3>NPS scores</h3>
+          <p>Professional Growth had an NPS of −12.7 — the lowest of all 7 products included in our surveys. Ease of use was the #1 reason for detractor scores, with 34 mentions — more than features, integration, or customer service.</p>
+          <h3>Page analytics</h3>
+          <p>Our page analytics showed that users skipped the MGJ dashboard entirely and went straight to the Learning Plan page — a legacy page that was dated but at least more straightforward than the "journey." It confirmed that the existing experience was not successful in changing users' behavior.</p>
+        </div>
+      </section>
 
-        <h2>Identifying the Opportunity</h2>
-        <p>I proposed this initiative during a cross-functional roadmap planning meeting while we reviewed recent NPS scores. I noted that users repeatedly flagged navigation as a pain point.</p>
-        <p>I recommended the landing experience as the place where we could make the biggest impact with the least development effort.</p>
-        <p>We had also recently completed Outcome Driven Innovation research where we had the most up-to-date feedback on the current experience for teachers and staff trying to complete professional learning on our platform.</p>
+      <section id="process" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Design Process</p>
+        <h2 class="cs-section-heading">From IA audit to validated high-fidelity designs</h2>
+        <div class="cs-section-body">
+          <h3>Information architecture audit</h3>
+          <p>Before diving into design, I mapped the existing architecture and compared it against what participants had told us in interviews: what they came to do, how often, and what they found valuable. The gap was immediate.</p>
+          <p>The content users prioritized most was scattered across three branches. An entire branch dedicated to content discovery occupied equal navigational weight despite research showing no participant used the dashboard to find new PD. That finding, more than anything else, shaped the restructuring that followed.</p>
+        </div>
 
-        <h2>Gathering Insights</h2>
-
-        <h3>Outcome Driven Innovation interviews</h3>
-        <p>The previous version of the dashboard had been envisioned and designed based on institutional knowledge from internal stakeholders in Support and Implementation. To reset our understanding, we conducted ODI interviews to get to the reality of how our end users managed their professional development today, whether that included Frontline's tools or not.</p>
-
-        <h4>Logging professional development was so painful, it was costing teachers money</h4>
-        <div class="pull-quote">
-          <div class="mark">&ldquo;</div>
-          <div class="content">
-            <p>I probably put in easy 90 hours of PD this year. You know how many I logged? Zero.</p>
-            <cite>High School Teacher · Interview Participant</cite>
+        <div class="cs-comparison" style="margin-top: 1.5rem;">
+          <div class="cs-comparison-grid">
+            <figure class="cs-comparison-item">
+              <div class="cs-comparison-label">
+                <span class="cs-comparison-tag before-tag">Before</span>
+              </div>
+              <button aria-label="View full size">
+                <img data-lightbox src="images/annotated-ia.png" alt="Annotated IA diagram of My Growth Journey">
+              </button>
+              <figcaption>The content users came to act on was buried two levels deep across three separate branches. Red marks high-frequency priority tasks; orange marks content users valued but visited less often.</figcaption>
+            </figure>
+            <figure class="cs-comparison-item">
+              <div class="cs-comparison-label">
+                <span class="cs-comparison-tag after-tag">After</span>
+              </div>
+              <button aria-label="View full size">
+                <img data-lightbox src="images/ia-home-after.png" alt="IA diagram of Home">
+              </button>
+              <figcaption>Three branches organized around the user's actual relationship to their work. The dashed Planning branch signals intentional future investment rather than a gap.</figcaption>
+            </figure>
           </div>
         </div>
-        <p>One participant had completed roughly 90 hours of professional development and logged none of it, and the consequence was a missed pay raise. They stopped believing the effort to document it was proportional to the benefit.</p>
 
-        <h4>My Growth Journey did not match the mental model of our users</h4>
-        <p>My Growth Journey organized itself around a reflective metaphor — "Where I've Been / Where I Am Now / Where I'm Going" — that didn't match how anyone actually used the system. The mental model was task management, not a literal growth journey. The mismatch meant the most prominent element on the page was the least useful.</p>
-
-        <h4>"Waiting on someone else" is an important state to represent</h4>
-        <div class="pull-quote">
-          <div class="mark">&ldquo;</div>
-          <div class="content">
-            <p>I don't know what's your end, what's my end — so it just sits there.</p>
-            <cite>First Grade Teacher · Interview Participant</cite>
-          </div>
-        </div>
-        <p>One teacher described spending months re-clicking through completed items because she couldn't tell if she needed to take further action to clear them off her list. Another had a weekly check-in ritual. One admin described individually emailing teachers because she couldn't see completion status without her own tracker.</p>
-
-        <h3>NPS scores</h3>
-        <p>Professional Growth had an NPS of −12.7 — the lowest of all 7 products included in our surveys. Ease of use was the #1 reason for detractor scores, with 34 mentions — more than features, integration, or customer service.</p>
-
-        <h3>Page analytics</h3>
-        <p>Our page analytics showed that users skipped the MGJ dashboard entirely and went straight to the Learning Plan page — a legacy page that was dated but at least more straightforward than the "journey." It confirmed that the existing experience was not successful in changing users' behavior.</p>
-
-        <h2>Design Process</h2>
-
-        <h3>Information architecture audit</h3>
-        <p>Before diving into design, I mapped the existing architecture and compared it against what participants had told us in interviews: what they came to do, how often, and what they found valuable. The gap was immediate.</p>
-
-        <p>The content users prioritized most was scattered across three branches. An entire branch dedicated to content discovery occupied equal navigational weight despite research showing no participant used the dashboard to find new PD. That finding, more than anything else, shaped the restructuring that followed.</p>
-
-        <div class="comparison-grid" style="margin-bottom: 2rem">
-          <figure>
-            <div class="comparison-label">
-              <span class="comparison-tag before-tag">Before</span>
-            </div>
-            <button class="lightbox-trigger" aria-label="View full size image">
-              <img data-lightbox src="images/annotated-ia.png" alt="Annotated IA diagram of My Growth Journey with red boxes marking high-frequency priority tasks and orange marking content users valued but visited less often">
-            </button>
-            <figcaption style="font-size:0.78rem;font-weight:300;color:var(--muted);margin-top:0.6rem;line-height:1.5;">The content users came to act on was buried two levels deep across three separate branches. Red boxes mark high-frequency priority tasks; orange marks content users valued but visited less often.</figcaption>
-          </figure>
-          <figure>
-            <div class="comparison-label">
-              <span class="comparison-tag after-tag">After</span>
-            </div>
-            <button class="lightbox-trigger" aria-label="View full size image">
-              <img data-lightbox src="images/ia-home-after.png" alt="IA diagram of Home showing three branches: Current Activities and Evals (To Do, Current / Upcoming Activities, My Requests, Meetings, Current Evals), Planning (dashed, indicating future scope), and Completed Activities and Evals (Completed Activities, Completed Evals)">
-            </button>
-            <figcaption style="font-size:0.78rem;font-weight:300;color:var(--muted);margin-top:0.6rem;line-height:1.5;">Three branches organized around the user's actual relationship to their work. The dashed Planning branch signals intentional future investment rather than a gap.</figcaption>
-          </figure>
+        <div class="cs-section-body" style="margin-top: 2rem;">
+          <h3>Low-fidelity wireframes</h3>
+          <p>I moved on to low-fidelity wireframes to focus on the new information hierarchy without worrying about interface styling. I restructured the new landing experience around user intent rather than the growth journey metaphor, organizing content by urgency.</p>
         </div>
 
-        <h3>Low-fidelity wireframes</h3>
-        <p>I moved on to low-fidelity wireframes to focus on the new information hierarchy without worrying about interface styling. I restructured the new landing experience around user intent rather than the growth journey metaphor, organizing content by urgency.</p>
-
-        <figure class="case-image">
-          <img data-lightbox src="images/annotated-wireframes.png" alt="Annotated low-fidelity wireframes exploring how size and placement communicate prioritization, with urgent content at top and in-progress work dominating the larger left panel">
-          <figcaption>Early wireframes exploring how size and placement could do the work of prioritization. Urgent content anchors the top, and the larger left panel gives in-progress work the most surface area while secondary content recedes to the right.</figcaption>
+        <figure class="cs-image" style="margin-top: 1.5rem;">
+          <img data-lightbox src="images/annotated-wireframes.png" alt="Annotated low-fidelity wireframes">
+          <figcaption>Early wireframes exploring how size and placement could do the work of prioritization. Urgent content anchors the top; the larger left panel gives in-progress work the most surface area while secondary content recedes to the right.</figcaption>
         </figure>
 
-        <h3>Concept validation</h3>
-        <p>I facilitated interviews with six clients across three districts to validate the design direction. Participants immediately understood the to-do panel without explanation and responded to action-specific CTAs as a direct solution to a problem they'd been living with.</p>
-
-        <div class="pull-quote">
-          <div class="mark">&ldquo;</div>
-          <div class="content">
-            <p>[The current experience] is a little information overload…this [redesign] seems really focused.</p>
-            <cite>Digital Learning Specialist · Unprompted</cite>
+        <div class="cs-section-body">
+          <h3>Concept validation</h3>
+          <p>I facilitated interviews with six clients across three districts to validate the design direction. Participants immediately understood the to-do panel without explanation and responded to action-specific CTAs as a direct solution to a problem they'd been living with.</p>
+          <div class="pull-quote">
+            <div class="mark">&ldquo;</div>
+            <div class="content">
+              <p>[The current experience] is a little information overload…this [redesign] seems really focused.</p>
+              <cite>Digital Learning Specialist · Unprompted</cite>
+            </div>
           </div>
+          <div class="pull-quote">
+            <div class="mark">&ldquo;</div>
+            <div class="content">
+              <p>Phenomenal .... [The redesign] would help staff not need to dig too deep.</p>
+              <cite>District PD Director · Interview Participant</cite>
+            </div>
+          </div>
+          <p>Sessions also surfaced useful refinements: separating upcoming from active items in Current Activities and surfacing activity-related meetings. Both ideas made it to the final designs.</p>
+          <h3>Refining the experience in high fidelity</h3>
+          <p>The key design challenge was prioritizing urgent content without hiding secondary information. I proposed a visual treatment using background color to create hierarchy within the tiled layout. Primary tiles — To Do and Current Activities — sat on white card backgrounds. Secondary tiles — My Requests, Meetings, What's New — used the page's gray background, appearing "set back" from the primary content.</p>
         </div>
 
-        <div class="pull-quote">
-          <div class="mark">&ldquo;</div>
-          <div class="content">
-            <p> Phenomenal .... [The redesign] would help staff not need to dig too deep.</p>
-            <cite>District PD Director · Interview participant</cite>
-          </div>
-        </div>
-        
-        Sessions also surfaced useful refinements: separating upcoming from active items in Current Activities and surfacing activity-related meetings. Both ideas made it to the final designs.</p>
-
-        <h3>Refining the experience in high fidelity</h3>
-        <p>The key design challenge was prioritizing urgent content without hiding secondary information. I proposed a visual treatment using background color to create hierarchy within the tiled layout. Primary tiles — To Do and Current Activities — sat on white card backgrounds. Secondary tiles — My Requests, Meetings, What's New — used the page's gray background, appearing "set back" from the primary content. The effect created a clear scannable hierarchy without fragmenting the layout.</p>
-
-        <figure class="case-image">
-          <img data-lightbox src="images/home-after.png" alt="Home dashboard showing the final high-fidelity design with To Do and Current Activities on white card backgrounds, and My Requests and Meetings visually receded on the page background">
+        <figure class="cs-image" style="margin-top: 1.5rem;">
+          <img data-lightbox src="images/home-after.png" alt="Home dashboard final high-fidelity design">
           <figcaption>Final high-fidelity design. White card backgrounds on To Do and Current Activities pull urgent content forward. Secondary tiles sit directly on the page surface — same typography, same placement, no card.</figcaption>
         </figure>
 
-        <h3>Design system contribution</h3>
-        <p>I worked with the design system lead to review my proposals. He steered me toward existing components where they solved the problem, keeping the system lean — but agreed that the "set back" tile treatment and several new patterns I proposed were valuable additions. These were approved as reusable React components available to other product teams across the platform.</p>
-
-        <h2>Outcome</h2>
-        <p>With unanimous positive responses from participants during concept validation, the team felt confident moving forward with the high-fidelity designs. The final designs were in active development at the time of my departure from Frontline.</p>
-        <p>I also made new contributions to our design system which were approved as reusable React components, making my designs available for use across all of Frontline's products.</p>
-
+        <div class="cs-section-body">
+          <h3>Design system contribution</h3>
+          <p>I worked with the design system lead to review my proposals. He steered me toward existing components where they solved the problem, keeping the system lean — but agreed that the "set back" tile treatment and several new patterns were valuable additions. These were approved as reusable React components available to other product teams across the platform.</p>
+        </div>
       </section>
 
-      <!-- ── KEY TAKEAWAYS ─────────────────────────────────────────── -->
-      <div class="case-takeaways">
-        <h2>Key Takeaways</h2>
-        <ul class="takeaway-list">
+      <section id="outcome" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Outcome</p>
+        <h2 class="cs-section-heading">Unanimous validation, and new design system patterns shipped to all products</h2>
+        <div class="cs-section-body">
+          <p>With unanimous positive responses from participants during concept validation, the team felt confident moving forward with the high-fidelity designs. The final designs were in active development at the time of my departure from Frontline.</p>
+          <p>New components contributed to the design system were approved as reusable React components, making the patterns available across all of Frontline's products.</p>
+        </div>
+      </section>
+
+      <div id="takeaways" class="cs-takeaways">
+        <p class="cs-section-label">Key Takeaways</p>
+        <ul class="cs-takeaway-list">
           <li>
             <strong>Reducing branches is a structural argument, not just cleanup.</strong>
             Consolidating from four top-level branches to three reflected how users actually think about their work — current, past, and future — rather than the reflective growth narrative the original architecture imposed on them.
@@ -674,67 +801,109 @@
     </main>
   </div>
 
+  <div class="cs-lightbox" id="cs-lightbox">
+    <button class="cs-lightbox-close" id="cs-lightbox-close" aria-label="Close">×</button>
+    <img id="cs-lightbox-img" src="" alt="">
+  </div>
+
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Pull quote entrance animation
+    (function () {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sections = Array.from(document.querySelectorAll('[data-cs-section]'));
+      if (!sections.length) return;
+      if (reduced) { sections.forEach(s => s.setAttribute('data-visible', '')); return; }
+      let pending = sections.slice();
+      let scheduled = false;
+      function check() {
+        scheduled = false;
+        const wh = window.innerHeight;
+        pending = pending.filter(sec => {
+          const r = sec.getBoundingClientRect();
+          if (r.top < wh - 40 && r.bottom > 0) { sec.setAttribute('data-visible', ''); return false; }
+          return true;
+        });
+      }
+      function schedule() { if (scheduled) return; scheduled = true; requestAnimationFrame(check); }
+      check();
+      if (!pending.length) return;
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+      setTimeout(() => { pending.forEach(s => s.setAttribute('data-visible', '')); pending = []; }, 2000);
+    })();
+
+    (function () {
       const quotes = document.querySelectorAll('.pull-quote');
-      if (!('IntersectionObserver' in window)) {
-        quotes.forEach(q => q.classList.add('is-visible'));
-      } else {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-        setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
+      if (!('IntersectionObserver' in window)) { quotes.forEach(q => q.classList.add('is-visible')); return; }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
+    })();
+
+    (function () {
+      const list  = document.getElementById('cs-toc-list');
+      const pill  = document.getElementById('cs-toc-pill');
+      const items = list ? Array.from(list.querySelectorAll('[data-section]')) : [];
+      if (!items.length || !pill) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) pill.style.transition = 'none';
+      const sectionIds = items.map(i => i.dataset.section);
+      const sections   = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      function movePillTo(item) {
+        if (!item) { pill.style.opacity = '0'; return; }
+        const iR = item.getBoundingClientRect();
+        const lR = list.getBoundingClientRect();
+        pill.style.transform = `translateY(${iR.top - lR.top}px)`;
+        pill.style.height    = `${iR.height}px`;
+        pill.style.opacity   = '1';
       }
-
-      // Lightbox
-      const overlay = document.createElement('div');
-      overlay.className = 'lightbox';
-
-      const closeBtn = document.createElement('button');
-      closeBtn.className = 'lightbox-close';
-      closeBtn.textContent = '×';
-      closeBtn.setAttribute('aria-label', 'Close');
-
-      const lightboxImg = document.createElement('img');
-
-      overlay.appendChild(closeBtn);
-      overlay.appendChild(lightboxImg);
-      document.body.appendChild(overlay);
-
-      function openLightbox(src, alt) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || '';
-        overlay.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        closeBtn.focus();
+      function itemForId(id) { return list.querySelector(`[data-section="${id}"]`); }
+      function setActive(id) {
+        items.forEach(i => i.dataset.section === id ? i.setAttribute('data-current', '') : i.removeAttribute('data-current'));
+        movePillTo(itemForId(id));
       }
-
-      function closeLightbox() {
-        overlay.classList.remove('is-open');
-        document.body.style.overflow = '';
+      let scheduled = false;
+      function updateActive() {
+        scheduled = false;
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+          const last = sections[sections.length - 1]; if (last) setActive(last.id); return;
+        }
+        const line = window.innerHeight * 0.3;
+        let chosen = null;
+        for (const sec of sections) { if (sec.getBoundingClientRect().top <= line) chosen = sec.id; else break; }
+        setActive(chosen || sections[0]?.id);
       }
-
-      document.querySelectorAll('img[data-lightbox]').forEach(img => {
-        const trigger = img.closest('button.lightbox-trigger') || img;
-        trigger.addEventListener('click', () => openLightbox(img.src, img.alt));
+      function schedule() { if (scheduled) return; scheduled = true; requestAnimationFrame(updateActive); }
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => { updateActive(); }, { passive: true });
+      updateActive();
+      setTimeout(updateActive, 60);
+      items.forEach(item => { item.addEventListener('mouseenter', () => movePillTo(item)); });
+      list.addEventListener('mouseleave', () => { const active = list.querySelector('[data-current]'); if (active) movePillTo(active); });
+      items.forEach(item => {
+        item.addEventListener('click', e => {
+          const target = document.getElementById(item.dataset.section);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+          history.replaceState(null, '', `#${item.dataset.section}`);
+        });
       });
+    })();
 
-      closeBtn.addEventListener('click', closeLightbox);
-
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeLightbox();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
-      });
-    });
+    (function () {
+      const overlay  = document.getElementById('cs-lightbox');
+      const closeBtn = document.getElementById('cs-lightbox-close');
+      const lbImg    = document.getElementById('cs-lightbox-img');
+      function open(src, alt) { lbImg.src = src; lbImg.alt = alt || ''; overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; closeBtn.focus(); }
+      function close() { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+      document.querySelectorAll('img[data-lightbox]').forEach(img => { img.addEventListener('click', () => open(img.src, img.alt)); });
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
+    })();
   </script>
 
 </body>
