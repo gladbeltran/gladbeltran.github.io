@@ -5,7 +5,9 @@
    --walnut:  #5a3e28  · Juglans regia   · brown · accent
    --fleece:  #ffffff  · undyed wool     · background
    --shadow:  #3a3228  · dark warm near-black · body text
-*/
+   --nettle:  #4e6e3a  · Urtica dioica · green · tags / status labels 
+   */
+
 @font-face {
   font-family: 'Untitled Sans';
   src: url('fonts/untitledsans/untitled-sans-light.woff2') format('woff2');
@@ -35,6 +37,7 @@
   --weld:          #8f6100;
   --woad:          #3a5c7a;
   --walnut:        #5a3e28;
+  --nettle:        #4e6e3a;
   --fleece:        #ffffff;
   --shadow:        #3a3228;
 
@@ -1012,6 +1015,7 @@ footer {
     --weld:          #c89830;
     --woad:          #6a96be;
     --walnut:        #8a6848;
+    --nettle:        #96c47a;
   }
 
   .name,
