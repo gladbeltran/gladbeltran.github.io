@@ -229,7 +229,7 @@ h2 {
   font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--section-label);
   margin-bottom: 1.2rem;
 }
@@ -628,6 +628,19 @@ h2 {
 }
 
 /* --- CONTACT --- */
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.88rem;
+}
+
+.contact-sep {
+  color: var(--border);
+  font-size: 0.88rem;
+}
 
 #contact a {
   font-size: 0.88rem;
