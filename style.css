@@ -449,7 +449,7 @@ h2 {
 
 .badge-shipped {
   border-color: color-mix(in srgb, var(--woad) 40%, transparent);
-  color: var(--woad);
+  color: var(--nettle);
 }
 
 .badge-in-dev {
