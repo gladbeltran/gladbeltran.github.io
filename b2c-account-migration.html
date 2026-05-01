@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Zero Tickets on Launch Day · glad beltran</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    .case-study-page .layout {
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cs-sidebar {
+      width: 303px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 3rem 0 3rem 2.5rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .cs-sidebar-home {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--woad);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+      padding-right: 2rem;
+    }
+
+    .cs-sidebar-home:hover { color: var(--shadow); }
+
+    .cs-sidebar-home .cs-home-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-sidebar-home:hover .cs-home-arrow { transform: translateX(-3px); }
+
+    .cs-toc {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+
+    .cs-toc-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .cs-toc-pill {
+      position: absolute;
+      left: 0;
+      right: -1px;
+      border-radius: 4px 0 0 4px;
+      background: color-mix(in srgb, var(--shadow) 6%, transparent);
+      pointer-events: none;
+      opacity: 0;
+      height: 28px;
+      transition:
+        transform 0.24s cubic-bezier(0.23, 1, 0.32, 1),
+        height 0.24s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.2s ease;
+    }
+
+    .cs-toc-list li { position: relative; }
+
+    .cs-toc-item {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.35rem 1.5rem 0.35rem 0.5rem;
+      border-radius: 4px 0 0 4px;
+      transition: color 0.2s ease;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    .cs-toc-item:hover { color: var(--shadow); }
+
+    .cs-toc-item[data-current] {
+      color: var(--shadow);
+      font-weight: 400;
+    }
+
+    .cs-sidebar-top { margin-top: auto; }
+
+    .cs-back-top {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+      padding-right: 2rem;
+    }
+
+    .cs-back-top:hover { color: var(--shadow); }
+
+    .cs-back-top .cs-top-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .cs-back-top:hover .cs-top-arrow { transform: translateY(-2px); }
+
+    @media (max-width: 960px) {
+      .cs-sidebar { display: none; }
+    }
+
+    .cs-mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--fleece);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .cs-mobile-nav a {
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--woad);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .cs-mobile-nav a:hover { color: var(--shadow); }
+
+    @media (max-width: 960px) {
+      .cs-mobile-nav { display: block; }
+
+      .case-study-page main {
+        padding: 2rem 1.25rem 3rem;
+      }
+    }
+
+    .case-study-page main {
+      flex: 1;
+      min-width: 0;
+      padding: 3rem 2.5rem 4rem 3rem;
+      border-left: none;
+    }
+
+    .cs-header {
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 680px;
+    }
+
+    .cs-header h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-header-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      max-width: 520px;
+    }
+
+    .cs-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .cs-meta-sep { color: var(--border); }
+
+    .cs-meta-block {
+      margin: 2.5rem 0;
+      padding: 1.25rem 1.75rem;
+      background: color-mix(in srgb, var(--madder) 6%, var(--fleece));
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .cs-meta-block-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--madder);
+      margin-bottom: 0.6rem;
+    }
+
+    .cs-meta-block-value {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--shadow);
+    }
+
+    @media (max-width: 680px) {
+      .cs-meta-block { grid-template-columns: 1fr 1fr; }
+    }
+
+    .cs-brief-outcome {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 680px) {
+      .cs-brief-outcome { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .cs-section {
+      padding: 3rem 0 0;
+      opacity: 0;
+      transform: translateY(8px);
+      transition:
+        opacity 400ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .cs-section[data-visible] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cs-section:first-of-type { padding-top: 2.5rem; }
+
+    .cs-section-label {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.5rem;
+      opacity: 0.8;
+    }
+
+    .cs-section-heading {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 300;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      max-width: 800px;
+    }
+
+    .cs-section-body { max-width: 620px; }
+
+    .cs-section-body p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--shadow);
+      margin-bottom: 1rem;
+    }
+
+    .cs-section-body p:last-child { margin-bottom: 0; }
+
+    .cs-section-body h3 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--woad);
+      margin-top: 2rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .cs-section-body h4 {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--shadow);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      max-width: 560px;
+      line-height: 1.4;
+    }
+
+    .cs-brief-outcome .cs-section-label { margin-bottom: 0.5rem; }
+
+    .cs-brief-outcome p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--shadow);
+      margin-bottom: 0.65rem;
+    }
+
+    .cs-brief-outcome p:last-child { margin-bottom: 0; }
+
+    .cs-image { margin: 2rem 0; max-width: 640px; }
+
+    .cs-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      cursor: zoom-in;
+      transition: opacity 0.2s ease;
+    }
+
+    .cs-image img:hover { opacity: 0.92; }
+
+    .cs-image figcaption {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+      max-width: 580px;
+    }
+
+    .pull-quote {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin: 1.8rem 0;
+      max-width: 560px;
+    }
+
+    .pull-quote .mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 4rem;
+      line-height: 0.85;
+      color: var(--madder);
+      flex-shrink: 0;
+      width: 2rem;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 1s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .pull-quote .content {
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 1s cubic-bezier(0.23, 1, 0.32, 1) 0.14s,
+        transform 1s cubic-bezier(0.23, 1, 0.32, 1) 0.14s;
+    }
+
+    .pull-quote.is-visible .mark { opacity: 0.6; transform: translateX(0); }
+    .pull-quote.is-visible .content { opacity: 1; transform: translateX(0); }
+
+    .pull-quote p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--shadow);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .pull-quote cite {
+      display: block;
+      font-size: 0.72rem;
+      font-style: normal;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Copy comparison block */
+    .cs-copy-comparison {
+      margin: 2rem 0;
+      max-width: 580px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .cs-copy-comparison-label {
+      font-size: 0.63rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      padding: 0.75rem 1.25rem 0.6rem;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--shadow) 3%, var(--fleece));
+    }
+
+    .cs-copy-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-copy-row:last-child { border-bottom: none; }
+
+    .cs-copy-cell {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--shadow);
+    }
+
+    .cs-copy-cell + .cs-copy-cell {
+      border-left: 1px solid var(--border);
+    }
+
+    .cs-copy-cell-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .cs-copy-cell-label.tested { color: var(--madder); }
+    .cs-copy-cell-label.preferred { color: var(--woad); }
+
+    .cs-copy-cell.is-preferred {
+      background: color-mix(in srgb, var(--woad) 5%, transparent);
+    }
+
+    .cs-takeaways {
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      max-width: 640px;
+    }
+
+    .cs-takeaway-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.25rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cs-takeaway-list li {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--shadow);
+      padding-left: 1.1rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .cs-takeaway-list li strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--shadow);
+      margin-bottom: 0.3rem;
+    }
+
+    /* Stat callout */
+    .cs-stat-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+      max-width: 580px;
+    }
+
+    .cs-stat {
+      flex: 1;
+      min-width: 140px;
+      padding: 1.1rem 1.25rem;
+      background: color-mix(in srgb, var(--madder) 6%, var(--fleece));
+      border-radius: 8px;
+    }
+
+    .cs-stat-number {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--madder);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .cs-stat-desc {
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    /* Lightbox */
+    .cs-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.82);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .cs-lightbox.is-open { display: flex; }
+
+    .cs-lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .cs-lightbox-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.25rem 0.5rem;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .cs-lightbox-close:hover { opacity: 1; }
+
+    :focus-visible {
+      outline: 2px solid var(--woad);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs-section { opacity: 1; transform: none; transition: none; }
+      .pull-quote .mark, .pull-quote .content { opacity: 1; transform: none; transition: none; }
+      .pull-quote .mark { opacity: 0.6; }
+    }
+
+  </style>
+</head>
+<body class="case-study-page">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="cs-mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html">← Home</a>
+  </nav>
+
+  <div class="layout" id="top">
+
+    <aside class="cs-sidebar">
+      <a href="index.html" class="cs-sidebar-home">
+        <span class="cs-home-arrow" aria-hidden="true">←</span>
+        <span>Home</span>
+      </a>
+      <nav class="cs-toc" aria-label="Table of contents">
+        <p class="cs-toc-label">Contents</p>
+        <ul class="cs-toc-list" id="cs-toc-list">
+          <span class="cs-toc-pill" id="cs-toc-pill" aria-hidden="true"></span>
+          <li><a href="#problem"   class="cs-toc-item" data-section="problem">01. The Problem</a></li>
+          <li><a href="#context"   class="cs-toc-item" data-section="context">02. Context</a></li>
+          <li><a href="#approach"  class="cs-toc-item" data-section="approach">03. Design Approach</a></li>
+          <li><a href="#outcome"   class="cs-toc-item" data-section="outcome">04. Outcome</a></li>
+          <li><a href="#takeaways" class="cs-toc-item" data-section="takeaways">05. Takeaways</a></li>
+        </ul>
+      </nav>
+
+      <a href="#top" class="cs-back-top cs-sidebar-top">
+        <span class="cs-top-arrow" aria-hidden="true">↑</span>
+        <span>Back to top</span>
+      </a>
+    </aside>
+
+    <main id="main-content">
+
+      <header class="cs-header">
+        <h1>Zero Tickets on Launch Day</h1>
+        <p class="cs-header-sub">Designing a mandatory account migration that 3,000+ users completed without a single support call about the flow.</p>
+        <div class="cs-meta-bar">
+          <span>Frontline Education</span>
+          <span class="cs-meta-sep">·</span>
+          <span>K-12 Ed Tech</span>
+          <span class="cs-meta-sep">·</span>
+          <span>B2C · Account Migration</span>
+          <span class="cs-meta-sep">·</span>
+          <span>End-to-End Flow Design</span>
+        </div>
+      </header>
+
+      <div class="cs-meta-block">
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">My Role</p>
+          <p class="cs-meta-block-value">Senior Product Designer</p>
+        </div>
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">Team</p>
+          <p class="cs-meta-block-value">1 Platform UX Designer<br>1 K12JobSpot PM<br>Engineering Team</p>
+        </div>
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">Platform</p>
+          <p class="cs-meta-block-value">K12JobSpot<br>B2C Job Search<br>Frontline Education</p>
+        </div>
+        <div class="cs-meta-block-item">
+          <p class="cs-meta-block-label">What I Did</p>
+          <p class="cs-meta-block-value">End-to-End Flow Design<br>Copy Strategy<br>Usability Testing<br>CS Research</p>
+        </div>
+      </div>
+
+      <div class="cs-brief-outcome">
+        <div>
+          <p class="cs-section-label">The Brief</p>
+          <p>K12JobSpot users had to migrate from legacy credentials to a new Frontline account as part of a platform-wide identity consolidation. The migration was mandatory — users couldn't opt out — and it was happening mid-job search.</p>
+          <p>This was a forced change during a high-stakes moment. Any confusion risked abandonment, and Frontline had failed at a similar migration before.</p>
+        </div>
+        <div>
+          <p class="cs-section-label">Outcome</p>
+          <p>When the first application migrated, over 3,000 users completed the process with zero support tickets filed about the migration pathway. In subsequent applications, fewer than 2% of users filed migration-related tickets — a 90% reduction compared to Frontline's prior shadow migration approach.</p>
+        </div>
+      </div>
+
+      <section id="problem" class="cs-section" data-cs-section>
+        <p class="cs-section-label">The Problem</p>
+        <h2 class="cs-section-heading">A forced change, mid job search</h2>
+        <div class="cs-section-body">
+          <p>K12JobSpot is a consumer job-search platform used by educators nationwide. As part of Frontline's broader platform modernization, existing users were required to migrate from legacy credentials to a new Frontline account to continue accessing job listings.</p>
+          <p>The stakes were asymmetric: for the company, this was a technical infrastructure initiative. For users, it was an unexpected interruption at exactly the moment they were trying to find work. Any confusion, any moment where the path forward wasn't obvious, risked losing them permanently.</p>
+
+          <div class="cs-stat-row">
+            <div class="cs-stat">
+              <span class="cs-stat-number">3,000+</span>
+              <span class="cs-stat-desc">users in the first migration wave</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat-number">0</span>
+              <span class="cs-stat-desc">support tickets about the migration pathway on launch day</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat-number">90%</span>
+              <span class="cs-stat-desc">reduction in migration-related support volume vs. prior approach</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="context" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Context</p>
+        <h2 class="cs-section-heading">The previous attempt had failed — and we knew why</h2>
+        <div class="cs-section-body">
+          <p>Frontline had tried to unify identity management across its 20+ products once before, in 2016. That initiative failed in part because shadow-migrating users — moving accounts without their active participation — created data integrity problems that took significant customer service resources to untangle.</p>
+          <p>Research confirmed that approach wasn't viable here either. The volume of accounts combined with inconsistent user data across products made automated migration too risky. Users would migrate themselves, application by application, as each product came onto the new system.</p>
+          <p>That decision shaped everything. If users were doing this themselves, mid-login, without any onboarding or preparation, the experience had to be clear enough to complete correctly on their own — without calling support.</p>
+        </div>
+      </section>
+
+      <section id="approach" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Design Approach</p>
+        <h2 class="cs-section-heading">Designing for the user who isn't reading</h2>
+        <div class="cs-section-body">
+          <h3>The core constraint</h3>
+          <p>The biggest constraint was that users don't read. Testing confirmed it early: people skimmed past explanatory copy, defaulted to autopilot, and filled in credential fields before they'd processed what they were actually doing. That meant the design couldn't rely on text to carry meaning. Visual hierarchy, iconography, and sequencing had to do the work instead.</p>
+
+          <h3>Entry screen: logos over words</h3>
+          <p>On the entry screen, I proposed using the K12JobSpot and Frontline logos connected by a directional arrow as the primary communication of what was happening. Users who skimmed entirely still understood they were moving from one account to another. This became a pattern reused at key moments throughout the flow.</p>
+
+          <h3>Credential screen: icons over paragraphs</h3>
+          <p>On the credential-update screen, I replaced paragraph copy with a short icon-led bullet list. Each bullet paired one reassurance with a relevant icon — account continuity, security, data safety. The goal was a screen that worked even when users were operating on autopilot.</p>
+
+          <h3>Copy strategy: testing language directly</h3>
+          <p>Copy choices mattered more than expected. Through A/B comparisons in moderated usability testing, specific word choices produced measurably different user responses.</p>
+        </div>
+
+        <div class="cs-copy-comparison">
+          <div class="cs-copy-comparison-label">Copy variants tested in moderated sessions</div>
+          <div class="cs-copy-row">
+            <div class="cs-copy-cell">
+              <span class="cs-copy-cell-label tested">Tested</span>
+              Convert your account
+            </div>
+            <div class="cs-copy-cell is-preferred">
+              <span class="cs-copy-cell-label preferred">User preferred</span>
+              Upgrade your account
+            </div>
+          </div>
+          <div class="cs-copy-row">
+            <div class="cs-copy-cell">
+              <span class="cs-copy-cell-label tested">Tested</span>
+              Update your credentials
+            </div>
+            <div class="cs-copy-cell is-preferred">
+              <span class="cs-copy-cell-label preferred">User preferred</span>
+              Upgrade your account
+            </div>
+          </div>
+          <div class="cs-copy-row">
+            <div class="cs-copy-cell">
+              <span class="cs-copy-cell-label tested">Tested</span>
+              Continue to job listings
+            </div>
+            <div class="cs-copy-cell is-preferred">
+              <span class="cs-copy-cell-label preferred">Reduced anxiety</span>
+              Continue for free
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-section-body">
+          <p>I wrote multiple copy variations, tested them directly with users, and brought findings to the product team to advocate for user-preferred language even when it felt less technically precise. Making "free" explicit reduced measurable user anxiety. "Upgrade" tested better than "update" or "convert" — it reframed an imposed change as something happening for users rather than to them.</p>
+
+          <h3>Post-conversion: designing for what comes after</h3>
+          <p>The most consequential design decision wasn't in the flow itself — it was in the success screen. At that point in the rollout, legacy and new sign-in paths coexisted, and users were likely to revert to old habits the next time they logged in.</p>
+          <p>I designed the post-conversion success screen to use the exact same CTA that appears on the new Frontline sign-in page. Reusing the familiar button taught users where to log in next — not just confirmed the upgrade was complete. The screen also surfaced the user's new username directly, making the credential shift concrete rather than abstract.</p>
+
+          <h3>Research across the full arc</h3>
+          <p>Each version of the flow went through usability testing with B2C and B2B users. I recruited external participants for moderated sessions, ran unmoderated tests with active K12JobSpot users, and interviewed CS reps who handled migration-related calls. The flow was revised between each round based on where comprehension broke down.</p>
+        </div>
+      </section>
+
+      <section id="outcome" class="cs-section" data-cs-section>
+        <p class="cs-section-label">Outcome</p>
+        <h2 class="cs-section-heading">Zero tickets. Ninety percent fewer calls in subsequent waves.</h2>
+        <div class="cs-section-body">
+          <p>When the first application migrated, over 3,000 users completed the process with zero support tickets filed about the migration pathway. In subsequent applications, fewer than 2% of users filed migration-related tickets. Compared to Frontline's previous shadow migration approach, that's a 90% reduction in estimated support volume.</p>
+          <p>The pattern established for K12JobSpot — logo-led entry, icon-anchored reassurance, tested copy, success screen that teaches the next behavior — became the foundation for subsequent migrations across the platform.</p>
+        </div>
+      </section>
+
+      <div id="takeaways" class="cs-takeaways">
+        <p class="cs-section-label">Key Takeaways</p>
+        <ul class="cs-takeaway-list">
+          <li>
+            <strong>Users don't read — design for the skim path first.</strong>
+            Visual hierarchy and iconography have to carry meaning that copy cannot. If a screen only works when users read every word, it won't work.
+          </li>
+          <li>
+            <strong>Language is a design material, not a finishing step.</strong>
+            "Upgrade" versus "convert" is not a copywriting preference — it's a user experience decision. Testing copy the same way you'd test a layout surface differences that aren't visible any other way.
+          </li>
+          <li>
+            <strong>Completion isn't the end of the problem.</strong>
+            Getting users through the flow and making sure they knew where to log in the next day were two separate problems. The post-conversion screen was almost an afterthought — and it turned out to be the edge case that mattered most.
+          </li>
+        </ul>
+      </div>
+
+      <footer>
+        <p>© 2026 glad beltran · coded with twist</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <div class="cs-lightbox" id="cs-lightbox">
+    <button class="cs-lightbox-close" id="cs-lightbox-close" aria-label="Close">×</button>
+    <img id="cs-lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    (function () {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sections = Array.from(document.querySelectorAll('[data-cs-section]'));
+      if (!sections.length) return;
+      if (reduced) { sections.forEach(s => s.setAttribute('data-visible', '')); return; }
+      let pending = sections.slice();
+      let scheduled = false;
+      function check() {
+        scheduled = false;
+        const wh = window.innerHeight;
+        pending = pending.filter(sec => {
+          const r = sec.getBoundingClientRect();
+          if (r.top < wh - 40 && r.bottom > 0) { sec.setAttribute('data-visible', ''); return false; }
+          return true;
+        });
+      }
+      function schedule() { if (scheduled) return; scheduled = true; requestAnimationFrame(check); }
+      check();
+      if (!pending.length) return;
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+      setTimeout(() => { pending.forEach(s => s.setAttribute('data-visible', '')); pending = []; }, 2000);
+    })();
+
+    (function () {
+      const quotes = document.querySelectorAll('.pull-quote');
+      if (!('IntersectionObserver' in window)) { quotes.forEach(q => q.classList.add('is-visible')); return; }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
+    })();
+
+    (function () {
+      const list  = document.getElementById('cs-toc-list');
+      const pill  = document.getElementById('cs-toc-pill');
+      const items = list ? Array.from(list.querySelectorAll('[data-section]')) : [];
+      if (!items.length || !pill) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) pill.style.transition = 'none';
+      const sectionIds = items.map(i => i.dataset.section);
+      const sections   = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+      function movePillTo(item) {
+        if (!item) { pill.style.opacity = '0'; return; }
+        const iR = item.getBoundingClientRect();
+        const lR = list.getBoundingClientRect();
+        pill.style.transform = `translateY(${iR.top - lR.top}px)`;
+        pill.style.height    = `${iR.height}px`;
+        pill.style.opacity   = '1';
+      }
+      function itemForId(id) { return list.querySelector(`[data-section="${id}"]`); }
+      function setActive(id) {
+        items.forEach(i => i.dataset.section === id ? i.setAttribute('data-current', '') : i.removeAttribute('data-current'));
+        movePillTo(itemForId(id));
+      }
+      let scheduled = false;
+      function updateActive() {
+        scheduled = false;
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+          const last = sections[sections.length - 1]; if (last) setActive(last.id); return;
+        }
+        const line = window.innerHeight * 0.3;
+        let chosen = null;
+        for (const sec of sections) { if (sec.getBoundingClientRect().top <= line) chosen = sec.id; else break; }
+        setActive(chosen || sections[0]?.id);
+      }
+      function schedule() { if (scheduled) return; scheduled = true; requestAnimationFrame(updateActive); }
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => { updateActive(); }, { passive: true });
+      updateActive();
+      setTimeout(updateActive, 60);
+      items.forEach(item => { item.addEventListener('mouseenter', () => movePillTo(item)); });
+      list.addEventListener('mouseleave', () => { const active = list.querySelector('[data-current]'); if (active) movePillTo(active); });
+      items.forEach(item => {
+        item.addEventListener('click', e => {
+          const target = document.getElementById(item.dataset.section);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+          history.replaceState(null, '', `#${item.dataset.section}`);
+        });
+      });
+    })();
+
+    (function () {
+      const overlay  = document.getElementById('cs-lightbox');
+      const closeBtn = document.getElementById('cs-lightbox-close');
+      const lbImg    = document.getElementById('cs-lightbox-img');
+      function open(src, alt) { lbImg.src = src; lbImg.alt = alt || ''; overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; closeBtn.focus(); }
+      function close() { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+      document.querySelectorAll('img[data-lightbox]').forEach(img => { img.addEventListener('click', () => open(img.src, img.alt)); });
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
+    })();
+  </script>
+
+</body>
+</html>
