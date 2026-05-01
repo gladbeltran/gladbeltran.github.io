@@ -664,8 +664,7 @@
       <div class="cs-brief-outcome">
         <div>
           <p class="cs-section-label">The Brief</p>
-          <p>K12JobSpot users had to migrate from legacy credentials to a new Frontline account as part of a platform-wide identity consolidation. The migration was mandatory — users couldn't opt out — and it was happening mid-job search.</p>
-          <p>This was a forced change during a high-stakes moment. Any confusion risked abandonment, and Frontline had failed at a similar migration before.</p>
+          <p>K12JobSpot users had to migrate from legacy credentials to a new Frontline account as part of a platform-wide identity consolidation. The migration was mandatory and when we launched it would interrupt every user mid-job search.</p>
         </div>
         <div>
           <p class="cs-section-label">Outcome</p>
@@ -685,11 +684,11 @@
 
       <section id="context" class="cs-section" data-cs-section>
         <p class="cs-section-label">Context</p>
-        <h2 class="cs-section-heading">The previous attempt had failed — and we knew why</h2>
+        <h2 class="cs-section-heading">The previous migration attempt had failed</h2>
         <div class="cs-section-body">
-          <p>Frontline had tried to unify identity management across its 20+ products once before, in 2016. That initiative failed in part because shadow-migrating users — moving accounts without their active participation — created data integrity problems that took significant customer service resources to untangle.</p>
+          <p>Frontline had tried to unify identity management across its 20+ products once before, in 2016. That initiative failed in part because shadow-migrating users (moving accounts without their active participation) created data integrity problems that took significant customer service resources to untangle.</p>
           <p>Research confirmed that approach wasn't viable here either. The volume of accounts combined with inconsistent user data across products made automated migration too risky. Users would migrate themselves, application by application, as each product came onto the new system.</p>
-          <p>That decision shaped everything. If users were doing this themselves, mid-login, without any onboarding or preparation, the experience had to be clear enough to complete correctly on their own — without calling support.</p>
+          <p>That decision shaped everything. If users were doing this themselves, mid-login, without any onboarding or preparation, the experience had to be clear enough to complete correctly on their own without calling support.</p>
         </div>
       </section>
 
@@ -697,8 +696,8 @@
         <p class="cs-section-label">Design Approach</p>
         <h2 class="cs-section-heading">Designing for the user who isn't reading</h2>
         <div class="cs-section-body">
-          <h3>The core constraint</h3>
-          <p>The biggest constraint was that users don't read. Testing confirmed it early: people skimmed past explanatory copy, defaulted to autopilot, and filled in credential fields before they'd processed what they were actually doing. That meant the design couldn't rely on text to carry meaning. Visual hierarchy, iconography, and sequencing had to do the work instead.</p>
+          <h3>As we all know by now: People Don't Read</h3>
+          <p>Testing confirmed quickly that people don't read: people skimmed past explanatory copy, defaulted to autopilot, and filled in credential fields before they'd processed what they were actually doing.</p>
 
           <h3>Entry screen: logos over words</h3>
           <p>On the entry screen, I proposed using the K12JobSpot and Frontline logos connected by a directional arrow as the primary communication of what was happening. Users who skimmed entirely still understood they were moving from one account to another. This became a pattern reused at key moments throughout the flow.</p>
@@ -735,14 +734,13 @@
         </div>
 
         <div class="cs-section-body">
-          <p>I wrote multiple copy variations, tested them directly with users, and brought findings to the product team to advocate for user-preferred language even when it felt less technically precise. Making "free" explicit reduced measurable user anxiety. "Upgrade" tested better than "update" or "convert" — it reframed an imposed change as something happening for users rather than to them.</p>
+          <p>I wrote multiple copy variations, tested them directly with users, and brought findings to the product team to advocate for user-preferred language even when it felt less technically precise. Making "free" explicit reduced measurable user anxiety. "Upgrade" tested better than "update" or "convert". It reframed an imposed change as something happening for users rather than to them.</p>
 
           <h3>Post-conversion: designing for what comes after</h3>
-          <p>The most consequential design decision wasn't in the flow itself — it was in the success screen. At that point in the rollout, legacy and new sign-in paths coexisted, and users were likely to revert to old habits the next time they logged in.</p>
-          <p>I designed the post-conversion success screen to use the exact same CTA that appears on the new Frontline sign-in page. Reusing the familiar button taught users where to log in next — not just confirmed the upgrade was complete. The screen also surfaced the user's new username directly, making the credential shift concrete rather than abstract.</p>
+          <p>At that point in the rollout, legacy and new sign-in paths coexisted, and users were likely to revert to old habits the next time they logged in.</p>
+          <p>I designed the post-conversion success screen to use the exact same CTA that appears on the new Frontline sign-in page. By reusing the familiar button, we were also teaching users where to log in next time.</p>
 
-          <h3>Research across the full arc</h3>
-          <p>Each version of the flow went through usability testing with B2C and B2B users. I recruited external participants for moderated sessions, ran unmoderated tests with active K12JobSpot users, and interviewed CS reps who handled migration-related calls. The flow was revised between each round based on where comprehension broke down.</p>
+         
         </div>
       </section>
 
@@ -751,7 +749,7 @@
         <h2 class="cs-section-heading">Zero tickets. Ninety percent fewer calls in subsequent waves.</h2>
         <div class="cs-section-body">
           <p>When the first application migrated, over 3,000 users completed the process with zero support tickets filed about the migration pathway. In subsequent applications, fewer than 2% of users filed migration-related tickets. Compared to Frontline's previous shadow migration approach, that's a 90% reduction in estimated support volume.</p>
-          <p>The pattern established for K12JobSpot — logo-led entry, icon-anchored reassurance, tested copy, success screen that teaches the next behavior — became the foundation for subsequent migrations across the platform.</p>
+          <p>The pattern established for K12JobSpot (logo-led entry, icon-anchored reassurance, tested copy, success screen that teaches the next behavior) became the foundation for subsequent migrations across the platform.</p>
         </div>
         <div class="cs-stat-row">
           <div class="cs-stat">
@@ -769,23 +767,7 @@
         </div>
       </section>
 
-      <div id="takeaways" class="cs-takeaways">
-        <p class="cs-section-label">Key Takeaways</p>
-        <ul class="cs-takeaway-list">
-          <li>
-            <strong>Users don't read — design for the skim path first.</strong>
-            Visual hierarchy and iconography have to carry meaning that copy cannot. If a screen only works when users read every word, it won't work.
-          </li>
-          <li>
-            <strong>Language is a design material, not a finishing step.</strong>
-            "Upgrade" versus "convert" is not a copywriting preference — it's a user experience decision. Testing copy the same way you'd test a layout surface differences that aren't visible any other way.
-          </li>
-          <li>
-            <strong>Completion isn't the end of the problem.</strong>
-            Getting users through the flow and making sure they knew where to log in the next day were two separate problems. The post-conversion screen was almost an afterthought — and it turned out to be the edge case that mattered most.
-          </li>
-        </ul>
-      </div>
+    
 
       <footer>
         <p>© 2026 glad beltran · coded with twist</p>
