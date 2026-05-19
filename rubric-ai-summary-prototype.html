@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Observation Summary · glad beltran</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ─── CASE STUDY SCOPED STYLES ─────────────────────────────────────
+       All selectors prefixed with .case-study-page to avoid collisions
+       with style.css. Color variables inherited from :root.
+    ──────────────────────────────────────────────────────────────────── */
+
+    .case-study-page .case-header {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+
+    .case-study-page .case-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--shadow);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-study-page .case-subtitle {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 480px;
+    }
+
+    .case-study-page .case-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
+    .case-study-page .case-meta-sep {
+      color: var(--border);
+    }
+
+    .case-study-page .case-overview {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      padding: 2rem 0 2.5rem;
+    }
+
+    .case-study-page .overview-narrative h2,
+    .case-study-page .overview-details h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 0.65rem;
+      margin-top: 1.5rem;
+    }
+
+    .case-study-page .overview-narrative h2:first-child,
+    .case-study-page .overview-details h2:first-child {
+      margin-top: 0;
+    }
+
+    .case-study-page .overview-narrative p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--shadow);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-study-page .overview-did,
+    .case-study-page .overview-methods {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .case-study-page .overview-did li,
+    .case-study-page .overview-methods li {
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--shadow);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .overview-did li:last-child,
+    .case-study-page .overview-methods li:last-child {
+      border-bottom: none;
+    }
+
+    .case-study-page .case-narrative {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .case-study-page .case-narrative h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-top: 2.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .case-study-page .case-narrative h2:first-child {
+      margin-top: 0;
+    }
+
+    .case-study-page .case-narrative h3 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--shadow);
+      margin-top: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .case-study-page .case-narrative p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--shadow);
+      margin-bottom: 1rem;
+      max-width: 580px;
+    }
+
+    .case-study-page .case-narrative p:last-child {
+      margin-bottom: 0;
+    }
+
+    .case-study-page .case-narrative strong {
+      font-weight: 400;
+      color: var(--shadow);
+    }
+
+    /* Prototype link callout */
+    .case-study-page .prototype-callout {
+      border-left: 2px solid var(--woad);
+      padding: 1rem 1.2rem;
+      margin: 1.5rem 0;
+      background: color-mix(in srgb, var(--woad) 5%, transparent);
+      max-width: 580px;
+    }
+
+    .case-study-page .prototype-callout p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--shadow);
+    }
+
+    .case-study-page .prototype-callout a {
+      color: var(--woad);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Pull quote */
+    .case-study-page .pull-quote {
+      border-left: 2px solid var(--woad);
+      padding: 0.8rem 1.2rem;
+      margin: 1.8rem 0;
+      max-width: 540px;
+      opacity: 0;
+      transform: translateX(-18px);
+      transition:
+        opacity 1.5s cubic-bezier(0.23, 1, 0.32, 1),
+        transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .case-study-page .pull-quote.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .case-study-page .pull-quote p {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--shadow);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Key Takeaways closing section */
+    .case-study-page .case-takeaways {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      max-width: 580px;
+    }
+
+    .case-study-page .case-takeaways h2 {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--section-label);
+      margin-bottom: 1.5rem;
+      margin-top: 0;
+    }
+
+    .case-study-page .takeaway-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case-study-page .takeaway-list li {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--shadow);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-study-page .takeaway-list li:last-child {
+      border-bottom: none;
+    }
+
+    .case-study-page .takeaway-list strong {
+      font-weight: 400;
+      color: var(--shadow);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Case study images */
+    .case-study-page .case-image {
+      margin: 2rem 0;
+      max-width: 620px;
+    }
+
+    .case-study-page .case-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+    }
+
+    .case-study-page .case-image figcaption {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--muted);
+      margin-top: 0.6rem;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 25, 22, 0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.is-open {
+      display: flex;
+    }
+
+    img[data-lightbox] {
+      cursor: zoom-in;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: var(--fleece);
+      font-size: 1.5rem;
+      text-decoration: none;
+      line-height: 1;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-close:focus-visible {
+      outline: 2px solid var(--fleece);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .case-study-page .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .case-study-page .case-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .case-study-page .prototype-callout {
+        background: color-mix(in srgb, var(--woad) 8%, transparent);
+      }
+    }
+  </style>
+</head>
+<body class="case-study-page">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
+  <div class="layout">
+    <nav>
+      <a href="index.html#ai-in-practice">← AI in Practice</a>
+      <a href="#overview">Overview</a>
+      <a href="#full-case">Full case</a>
+    </nav>
+
+    <main id="main-content">
+
+      <header class="case-header">
+        <h1>Observation Summary</h1>
+        <p class="case-subtitle">What an AI layer can and can't own in a high-stakes teacher evaluation workflow.</p>
+        <div class="case-meta-bar">
+          <span class="case-meta-item">Frontline Education</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">Product Designer</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">Collaborative Video · Professional Growth</span>
+          <span class="case-meta-sep">·</span>
+          <span class="case-meta-item">Concept · 2025</span>
+        </div>
+      </header>
+
+      <!-- ── OVERVIEW ─────────────────────────────────────────────── -->
+      <section id="overview" class="case-overview">
+
+        <div class="overview-grid">
+
+          <div class="overview-narrative">
+            <h2>What this is</h2>
+            <p>In 2022, I shipped a collaborative video feature that let evaluators leave timestamped notes on recorded lessons, align each observation to a rubric criterion, and assign a performance rating. The workflow held together. The output didn't.</p>
+            <p>When an evaluator hit "Complete and Save PDF," they got a table sorted by timestamp — every observation in the order it was recorded, with the full Danielson indicator language printed underneath each one. A teacher receiving that document had to do the synthesis work themselves.</p>
+            <p>The AI tooling to fix this didn't exist in 2022. This is the feature the export always needed.</p>
+
+            <h2>Prototype</h2>
+            <p>A working prototype built in Claude Code demonstrating the core interaction: timestamped observations on the left, AI-generated summary organized by rubric domain on the right, editable before anything goes into the teacher record.</p>
+          </div>
+
+          <div class="overview-details">
+            <h2>What I Did</h2>
+            <ul class="overview-did">
+              <li>Identified the gap in the original shipped feature and defined the design problem</li>
+              <li>Worked through what AI could and couldn't own in a high-stakes evaluation context</li>
+              <li>Designed the interaction concept and wrote the prototype brief</li>
+              <li>Built a working prototype in Claude Code</li>
+            </ul>
+
+            <h2>Methods</h2>
+            <ul class="overview-methods">
+              <li>Domain analysis</li>
+              <li>Interaction design</li>
+              <li>Prototype (Claude Code)</li>
+            </ul>
+
+            <h2>Tools</h2>
+            <ul class="overview-methods">
+              <li>Claude Code</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ── FULL CASE ──────────────────────────────────────────────── -->
+      <section id="full-case" class="case-narrative">
+
+        <h2>The original tool</h2>
+
+        <p>The collaborative video feature let evaluators watch a recorded lesson and build a structured record as they watched. Timestamped comments captured specific moments. A rubric panel let them align each observation to a Danielson criterion and select a performance level. By the time the video ended, they'd produced a complete set of evidence.</p>
+
+        <figure class="case-image">
+          <img data-lightbox src="images/collab-video-player.png" alt="Collaborative video player showing timestamped comments panel alongside the video">
+          <figcaption>The video player with timestamped comments. Each note could be aligned to a rubric criterion and rated before moving on.</figcaption>
+        </figure>
+
+        <p>The review screen collected everything into a table: timestamp, evaluator note, rubric alignment, rating. Accurate. Chronological. Then it exported to PDF.</p>
+
+        <figure class="case-image">
+          <img data-lightbox src="images/collab-video-review.png" alt="Review screen showing timestamped observations in a table with rubric alignments and ratings">
+          <figcaption>The review screen — a chronological table of every observation, organized by when it was recorded rather than by what it meant.</figcaption>
+        </figure>
+
+        <p>The problem was legibility. A teacher receiving a 12-row table sorted by timestamp had to reconstruct the evaluator's argument themselves. Find all the 3b observations. Notice the two that pointed in different directions. Figure out what the pattern meant for their practice. That's real cognitive work, at the end of a document that was supposed to make things clearer.</p>
+
+        <h2>The gap</h2>
+
+        <p>The PDF organized evidence for the evaluator's convenience — chronological order reflects how the notes were taken. It doesn't reflect how a teacher processes feedback, or how an administrator makes a summative judgment.</p>
+
+        <p>What both audiences need is the evidence grouped by domain. All the 1a observations together. All the 3b observations together. The pattern across multiple moments visible in one place, so the reader can see what the data actually shows rather than assembling it themselves.</p>
+
+        <p>Reorganizing timestamped observations by rubric domain is exactly the kind of work AI does well. The inputs are structured: each note has a timestamp, observation text, criterion alignment, and a rating the evaluator selected. The output is a narrative that preserves all of that, organized around teaching performance rather than lesson timeline.</p>
+
+        <h2>What AI can and can't own here</h2>
+
+        <p>Teacher evaluation in K-12 is high stakes. Evaluations inform tenure decisions, remediation plans, sometimes termination. In many states, evaluation frameworks are negotiated with unions. A design that put AI judgment into that process, even subtly, would be a liability.</p>
+
+        <p>So I worked through where the line was.</p>
+
+        <p>AI can't suggest ratings mid-observation. Anchoring bias is real — an evaluator who sees a suggested score before selecting their own isn't fully exercising their judgment. AI can't flag misaligned evidence in the moment, which would put the tool in an adversarial position with the person using it mid-task. And AI can't generate a summary that introduces language or judgment the evaluator didn't already express.</p>
+
+        <p>What's left is the right job: take what the evaluator collected and make it legible in a form the evaluator didn't have time to produce themselves. The AI organizes. The evaluator authors.</p>
+
+        <h2>The prototype</h2>
+
+        <div class="prototype-callout">
+          <p>The prototype is interactive. <a href="rubric-summary-prototype/index.html" target="_blank" rel="noopener">Open it here →</a></p>
+        </div>
+
+        <p>The interaction is a single moment: the evaluator has finished watching and aligning their notes. Left panel shows the raw observations, exactly as recorded. They click "Generate Summary." The right panel populates with a narrative organized by Danielson domain, written from their own selections.</p>
+
+        <figure class="case-image">
+          <img data-lightbox src="images/rubric-summary-prototype.png" alt="Two-panel prototype showing timestamped observation notes on the left and AI-generated summary organized by Danielson domain on the right">
+          <figcaption>The prototype. Left panel: raw observations in the order they were taken. Right panel: the same evidence reorganized by rubric domain, generated on demand.</figcaption>
+        </figure>
+
+        <p>The summary doesn't flatten mixed evidence. When an evaluator recorded two 3b observations that landed differently — one where discussion went off-track, one where a confused student was re-engaged — the summary says so. That tension is real information. Resolving it into a tidy average would make the document less accurate.</p>
+
+        <p>The right panel is editable. The evaluator reads it, revises it, owns it before anything goes into the teacher record. A disclaimer at the bottom makes that explicit: this was generated from their evidence, reflects their ratings, and is theirs to finalize. What gets sent is the evaluator's document.</p>
+
+        <h2>What's next</h2>
+
+        <p>The prototype demonstrates the interaction at the point of summary generation. The broader concept extends further: the same structured evidence that produces an individual summary could feed a district-level calibration view, where administrators can see how evaluators across a school are aligning similar evidence to different ratings over time.</p>
+
+        <p>That's a separate surface and a separate case to make. The summary prototype is the foundation — and the piece I didn't have the tooling to build in 2022.</p>
+
+      </section>
+
+      <!-- ── KEY TAKEAWAYS ─────────────────────────────────────────── -->
+      <div class="case-takeaways">
+        <h2>Key Takeaways</h2>
+        <ul class="takeaway-list">
+          <li>
+            <strong>The line between AI organizing and AI judging is a design decision.</strong>
+            Letting AI suggest ratings or flag misalignment mid-task would put the tool in an adversarial position with the evaluator, in a context where the output has legal and institutional consequences. The design draws the line at synthesis: AI reorganizes what the evaluator collected. The judgment stays human.
+          </li>
+          <li>
+            <strong>Output format is part of the design.</strong>
+            The original tool produced accurate data in an unhelpful order. The gap wasn't in the evidence collection — it was in what happened to the evidence afterward. Reorganizing by domain rather than timestamp is a small structural change with a meaningful impact on how the document gets used.
+          </li>
+          <li>
+            <strong>Preserving ambiguity is sometimes the right call.</strong>
+            When evidence across a criterion pointed in different directions, the summary names that rather than resolving it. A document that reflects the complexity of what was observed is more defensible — and more useful — than one that smooths it into a single rating.
+          </li>
+        </ul>
+      </div>
+
+      <footer>
+        <p>© 2026 glad beltran · coded with twist</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Pull quote entrance animation
+      const quotes = document.querySelectorAll('.pull-quote');
+      if (!('IntersectionObserver' in window)) {
+        quotes.forEach(q => q.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        setTimeout(() => { quotes.forEach(q => observer.observe(q)); }, 100);
+      }
+
+      // Lightbox
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'lightbox-close';
+      closeBtn.textContent = '×';
+      closeBtn.setAttribute('aria-label', 'Close');
+
+      const lightboxImg = document.createElement('img');
+
+      overlay.appendChild(closeBtn);
+      overlay.appendChild(lightboxImg);
+      document.body.appendChild(overlay);
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('img[data-lightbox]').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
+    });
+  </script>
+
+</body>
+</html>
