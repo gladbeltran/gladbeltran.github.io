@@ -49,27 +49,13 @@
       line-height: 1.5;
     }
 
-    .prototype-embed {
-      margin: 1.5rem 0 2rem;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .prototype-embed iframe {
-      width: 100%;
-      height: 640px;
-      border: none;
-      display: block;
-    }
-
-    .prototype-embed-caption {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--muted);
-      padding: 0.6rem 0.75rem;
-      border-top: 1px solid var(--border);
-      margin: 0;
+    .prototype-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--woad);
+      font-size: 0.88rem;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   </style>
 </head>
@@ -112,6 +98,7 @@
 
             <h3>Prototype</h3>
             <p>A working prototype built in Claude Code demonstrating the core interaction: timestamped observations on the left, AI-generated summary organized by rubric domain on the right, editable before anything goes into the teacher record.</p>
+            <a class="prototype-link" href="rubric-summary-prototype/index.html" target="_blank" rel="noopener">Try the interactive prototype →</a>
           </div>
 
           <div class="overview-details">
@@ -139,14 +126,6 @@
 
         </div>
 
-        <div class="prototype-embed">
-          <iframe
-            src="rubric-summary-prototype/index.html"
-            title="Observation Summary interactive prototype"
-            loading="lazy"
-          ></iframe>
-          <p class="prototype-embed-caption">Interactive prototype — try clicking "Generate Summary"</p>
-        </div>
 
       </section>
 
