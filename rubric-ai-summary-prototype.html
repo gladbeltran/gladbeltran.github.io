@@ -73,7 +73,7 @@
 
       <header class="case-header">
         <h1>Observation Summary</h1>
-        <p class="case-subtitle">What an AI layer can and can't own in a high-stakes teacher evaluation workflow.</p>
+        <p class="case-subtitle">What an AI layer can and can't own in a teacher evaluation workflow.</p>
         <div class="case-meta-bar">
           <span class="case-meta-item">Frontline Education</span>
           <span class="case-meta-sep">·</span>
@@ -92,8 +92,7 @@
 
           <div class="overview-narrative">
             <h3>What this is</h3>
-            <p>In 2022, I shipped a collaborative video feature that let evaluators leave timestamped notes on recorded lessons, align each observation to a rubric criterion, and assign a performance rating. The workflow held together. The output didn't.</p>
-            <p>When an evaluator hit "Complete and Save PDF," they got a table sorted by timestamp — every observation in the order it was recorded. A teacher receiving that document had to do the synthesis work themselves.</p>
+            <p>In 2022, I shipped a collaborative video feature that let evaluators leave timestamped notes on recorded lessons, align each observation to a rubric criterion, and assign a performance rating. When they hit "Complete and Save PDF," they got a table sorted by timestamp, every observation in the order it was recorded. A teacher receiving that document had to do the synthesis work themselves.</p>
             <p>The AI tooling to fix this didn't exist in 2022. This is the feature the export always needed.</p>
 
             <h3>Prototype</h3>
@@ -134,29 +133,29 @@
 
         <h2>The original tool</h2>
 
-        <p>The collaborative video feature let evaluators watch a recorded lesson and build a structured record as they watched. Timestamped comments captured specific moments. A rubric panel let them align each observation to a Danielson criterion and select a performance level. By the time the video ended, they'd produced a complete set of evidence.</p>
+        <p>The collaborative video feature let evaluators watch a recorded lesson and build a structured record as they watched. Timestamped comments captured specific moments. A rubric panel let them align each observation to a Danielson criterion and select a performance level.</p>
 
         <figure class="case-image">
           <img data-lightbox src="images/collab-video-player.png" alt="Collaborative video player showing timestamped comments panel alongside the video">
           <figcaption>The video player with timestamped comments. Each note could be aligned to a rubric criterion and rated before moving on.</figcaption>
         </figure>
 
-        <p>The review screen collected everything into a table: timestamp, evaluator note, rubric alignment, rating. Accurate. Chronological. Then it exported to PDF.</p>
+        <p>The review screen collected everything into a table: timestamp, evaluator note, rubric alignment, rating. It exported to PDF in that same order.</p>
 
         <figure class="case-image">
           <img data-lightbox src="images/collab-video-review.png" alt="Review screen showing timestamped observations in a table with rubric alignments and ratings">
           <figcaption>The review screen — a chronological table of every observation, organized by when it was recorded rather than by what it meant.</figcaption>
         </figure>
 
-        <p>A teacher receiving a 12-row table sorted by timestamp had to reconstruct the evaluator's argument themselves. Find all the 3b observations. Notice the two that pointed in different directions. Figure out what the pattern meant for their practice. That's real cognitive work, at the end of a document that was supposed to make things clearer.</p>
+        <p>A teacher receiving a 12-row table sorted by timestamp had to find all the 3b observations themselves, notice when two of them pointed in different directions, and work out what the pattern meant for their practice.</p>
 
         <h2>The gap</h2>
 
-        <p>The PDF organized evidence for the evaluator's convenience — chronological order reflects how the notes were taken. It doesn't reflect how a teacher processes feedback, or how an administrator makes a summative judgment.</p>
+        <p>The PDF reflects the order notes were taken in, not how a teacher processes feedback or how an administrator makes a summative judgment.</p>
 
-        <p>What both audiences need is evidence grouped by domain. All the 1a observations together. All the 3b observations together. The pattern across multiple moments visible in one place.</p>
+        <p>What both audiences need is evidence grouped by domain: all the 1a observations together, all the 3b observations together, so a pattern across multiple moments shows up in one place.</p>
 
-        <p>Reorganizing timestamped observations by rubric domain is exactly the kind of work AI does well. The inputs are structured: each note has a timestamp, observation text, criterion alignment, and a rating the evaluator selected. The output is a narrative that preserves all of that, organized around teaching performance rather than lesson timeline.</p>
+        <p>The inputs are structured. Each note has a timestamp, observation text, criterion alignment, and a rating the evaluator already selected. Reorganizing that by domain instead of timeline is a synthesis problem, and it's one AI can do well without adding anything the evaluator didn't already record.</p>
 
         <h2>What AI can and can't own here</h2>
 
@@ -164,9 +163,9 @@
 
         <p>So I worked through where the line was.</p>
 
-        <p>AI can't suggest ratings mid-observation — anchoring bias is real, and an evaluator who sees a suggested score before selecting their own isn't fully exercising their judgment. AI can't flag misaligned evidence in the moment, which puts the tool in an adversarial position mid-task. And AI can't generate a summary that introduces language or judgment the evaluator didn't already express.</p>
+        <p>AI can't suggest ratings mid-observation. Anchoring bias is real, and an evaluator who sees a suggested score before selecting their own isn't fully exercising their judgment. AI can't flag misaligned evidence in the moment either, which puts the tool in an adversarial position mid-task. And it can't generate a summary that introduces language or judgment the evaluator didn't already express.</p>
 
-        <p>What's left is the right job: take what the evaluator collected and make it legible in a form they didn't have time to produce themselves. The AI organizes. The evaluator authors.</p>
+        <p>What's left is reorganizing what the evaluator already collected into a form they didn't have time to produce themselves. The evaluator still writes every word that ends up in the summary.</p>
 
         <h2>The prototype</h2>
 
@@ -177,7 +176,7 @@
           <figcaption>Left panel: raw observations in the order they were taken. Right panel: the same evidence reorganized by rubric domain, generated on demand.</figcaption>
         </figure>
 
-        <p>The summary doesn't flatten mixed evidence. When an evaluator recorded two 3b observations that landed differently, the summary says so. That tension is real information — resolving it into a tidy average would make the document less accurate.</p>
+        <p>The summary doesn't flatten mixed evidence. When an evaluator recorded two 3b observations that landed differently, the summary says so. Resolving that into a tidy average would make the document less accurate, not more useful.</p>
 
         <p>The right panel is editable. The evaluator reads it, revises it, owns it before anything goes into the teacher record. What gets sent is the evaluator's document.</p>
 
@@ -185,7 +184,7 @@
 
         <p>The prototype demonstrates the interaction at the point of summary generation. The broader concept extends further: the same structured evidence that produces an individual summary could feed a district-level calibration view, where administrators can see how evaluators across a school are aligning similar evidence to different ratings over time.</p>
 
-        <p>That's a separate surface. The summary prototype is the foundation — and the piece I didn't have the tooling to build in 2022.</p>
+        <p>That's a separate surface. The summary prototype is the piece I didn't have the tooling to build in 2022.</p>
 
       </section>
 
@@ -194,16 +193,16 @@
         <h2>Key Takeaways</h2>
         <ul class="takeaway-list">
           <li>
-            <strong>The line between AI organizing and AI judging is a design decision.</strong>
-            Letting AI suggest ratings or flag misalignment mid-task puts the tool in an adversarial position with the evaluator in a context where the output has legal and institutional consequences. The design draws the line at synthesis: AI reorganizes what the evaluator collected. The judgment stays human.
+            <strong>Where AI organizes versus where it judges is a decision you make, not a default.</strong>
+            Letting AI suggest ratings or flag misalignment mid-task puts it in an adversarial position with the evaluator, in a context where the output has legal and institutional consequences. This design draws the line at synthesis. The evaluator's judgment is the only judgment in the document.
           </li>
           <li>
-            <strong>Output format is part of the design.</strong>
-            The original tool produced accurate data in an unhelpful order. The gap wasn't in evidence collection — it was in what happened to the evidence afterward. Reorganizing by domain rather than timestamp is a small structural change with a meaningful impact on how the document gets used.
+            <strong>Output format matters as much as the data underneath it.</strong>
+            The original tool collected accurate evidence in an order nobody could use. Reorganizing by domain instead of timestamp is a small structural change that changes how the document gets read.
           </li>
           <li>
-            <strong>Preserving ambiguity is sometimes the right call.</strong>
-            When evidence across a criterion pointed in different directions, the summary names that rather than resolving it. A document that reflects the complexity of what was observed is more defensible — and more useful — than one that smooths it into a single rating.
+            <strong>Sometimes the right move is to leave the ambiguity in.</strong>
+            When evidence pointed in different directions, the summary names that instead of averaging it away. A document that shows the real complexity of what was observed holds up better under scrutiny than one that smooths it out.
           </li>
         </ul>
       </div>
