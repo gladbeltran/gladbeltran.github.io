@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-display="fraunces" data-layout="rail">
+<html lang="en" data-display="fraunces">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,26 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- sometimes you know exactly what you're making. sometimes you follow the material. -->
   <div class="layout">
+    <nav>
+      <a href="#work">work</a>
+      <a href="#ai-in-practice">ai in practice</a>
+      <a href="#writing">writing</a>
+      <a href="#about">about<span class="nav-mark" aria-hidden="true"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34 120L44 120" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
+        <path d="M196 120L206 120" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
+        <path d="M120 34L120 44" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
+        <path d="M120 196L120 206" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
+        <path d="M50 120C50 101.267 60.7326 85.921 73.0776 73.7122C87.5346 59.4149 100.073 50 120 50C137.798 50 148.599 59.7544 160.95 70.6955C175.428 83.5199 190 99.1382 190 120C190 138.162 177.326 150.662 165.983 163.103C153.181 177.144 140.498 190 120 190C101.624 190 85.9901 176.073 73.5012 164.49C59.7162 151.706 50 140.283 50 120Z" fill="none" stroke="currentColor" stroke-width="7"/>
+        <path d="M120 98L142 120L120 142L98 120L120 98Z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
+        <circle cx="120" cy="120" r="7" fill="currentColor"/>
+      </svg></span></a>
+      <a href="#contact">contact</a>
+    </nav>
+    <main id="main-content">
 
-    <aside class="rail">
-<div class="rail-id">
+      <header>
         <div class="hero-logo">
           <div class="logo-name">glad beltran</div>
           <div class="spindle-hero"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
@@ -72,26 +88,9 @@
           <span class="hero-dot"></span>
           <span>Miami, FL</span>
         </p>
-      </div>
-      <nav>
-        <a href="#work">work</a>
-        <a href="#ai-in-practice">ai in practice</a>
-        <a href="#writing">writing</a>
-        <a href="#about">about<span class="nav-mark" aria-hidden="true"><svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-        <path d="M34 120L44 120" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
-        <path d="M196 120L206 120" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
-        <path d="M120 34L120 44" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
-        <path d="M120 196L120 206" stroke="currentColor" stroke-linecap="round" stroke-width="15"/>
-        <path d="M50 120C50 101.267 60.7326 85.921 73.0776 73.7122C87.5346 59.4149 100.073 50 120 50C137.798 50 148.599 59.7544 160.95 70.6955C175.428 83.5199 190 99.1382 190 120C190 138.162 177.326 150.662 165.983 163.103C153.181 177.144 140.498 190 120 190C101.624 190 85.9901 176.073 73.5012 164.49C59.7162 151.706 50 140.283 50 120Z" fill="none" stroke="currentColor" stroke-width="7"/>
-        <path d="M120 98L142 120L120 142L98 120L120 98Z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round"/>
-        <circle cx="120" cy="120" r="7" fill="currentColor"/>
-      </svg></span></a>
-        <a href="#contact">contact</a>
-      </nav>
-    </aside>
+      </header>
 
-    <main id="main-content">
-<!-- ── LOG ────────────────────────────────────────────────────── 
+      <!-- ── LOG ────────────────────────────────────────────────────── 
       <div class="log">
         <div class="log-header" id="logHeader">
           <div class="log-header-left">
@@ -256,22 +255,44 @@
       <footer>
         <p>© 2026 glad beltran · coded with twist</p>
       </footer>
+
     </main>
   </div>
 
+  <!-- ── CURSOR LABEL ──────────────────────────────────────────────── -->
   <div class="cursor-label" id="cursorLabel">View case study</div>
 
   <script>
+    // Log collapse toggle
+    const logHeader = document.getElementById('logHeader');
+    const logBody   = document.getElementById('logBody');
+    const logToggle = document.getElementById('logToggle');
+
+    if (logHeader && logBody && logToggle) {
+      let logCollapsed = true;
+
+      logHeader.addEventListener('click', () => {
+        logCollapsed = !logCollapsed;
+        logBody.classList.toggle('is-collapsed', logCollapsed);
+        logToggle.textContent = logCollapsed ? '↓ expand' : '↑ collapse';
+        logToggle.setAttribute('aria-label', logCollapsed ? 'Expand log' : 'Collapse log');
+      });
+    }
+
+    // Cursor label on work cards (linked cards only)
     const label = document.getElementById('cursorLabel');
     const cards = document.querySelectorAll('a.work-card');
-    document.addEventListener('mousemove', e => {
+
+    document.addEventListener('mousemove', (e) => {
       label.style.left = e.clientX + 'px';
       label.style.top  = e.clientY + 'px';
     });
-    cards.forEach(c => {
-      c.addEventListener('mouseenter', () => label.classList.add('is-visible'));
-      c.addEventListener('mouseleave', () => label.classList.remove('is-visible'));
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => label.classList.add('is-visible'));
+      card.addEventListener('mouseleave', () => label.classList.remove('is-visible'));
     });
   </script>
+
 </body>
 </html>
